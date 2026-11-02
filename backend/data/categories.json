@@ -1,0 +1,81 @@
+[
+  {
+    "id": "all",
+    "name": "All Fireworks",
+    "slug": "all",
+    "count": 36,
+    "icon": "Sparkles",
+    "tagline": "Explore our entire premium fireworks collection"
+  },
+  {
+    "id": "sparklers",
+    "name": "Sparklers",
+    "slug": "sparklers",
+    "description": "Vibrant, smokeless, and glittering handheld sparks for all ages.",
+    "image": "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=80",
+    "gradient": "from-amber-500/30 to-yellow-600/10",
+    "count": 8,
+    "icon": "Flame"
+  },
+  {
+    "id": "flower-pots",
+    "name": "Flower Pots",
+    "slug": "flower-pots",
+    "description": "Classic glittering conical fountains showering cascades of golden and silver stars.",
+    "image": "https://images.unsplash.com/photo-1498931299472-f7a63a5a1cfa?auto=format&fit=crop&w=800&q=80",
+    "gradient": "from-orange-500/30 to-red-600/10",
+    "count": 6,
+    "icon": "Sparkle"
+  },
+  {
+    "id": "ground-chakkars",
+    "name": "Ground Chakkars",
+    "slug": "ground-chakkars",
+    "description": "High-speed spinning wheels forming dazzling luminous circles on the ground.",
+    "image": "https://images.unsplash.com/photo-1531747056595-07f6cbbe10ad?auto=format&fit=crop&w=800&q=80",
+    "gradient": "from-yellow-500/30 to-amber-600/10",
+    "count": 5,
+    "icon": "Disc"
+  },
+  {
+    "id": "aerial-shots",
+    "name": "Aerial Sky Shots",
+    "slug": "aerial-shots",
+    "description": "Multi-shot sky cakes and giant shells filling the night sky with thunderous colours.",
+    "image": "/assets/pon_murugan_hero.jpg",
+    "gradient": "from-rose-500/30 to-red-700/10",
+    "count": 7,
+    "icon": "Rocket"
+  },
+  {
+    "id": "rockets",
+    "name": "Sky Rockets",
+    "slug": "rockets",
+    "description": "Swift ascending whistling rockets bursting into brilliant parachutes and double sounds.",
+    "image": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
+    "gradient": "from-red-600/30 to-amber-600/10",
+    "count": 4,
+    "icon": "Zap"
+  },
+  {
+    "id": "gift-boxes",
+    "name": "Gift Boxes & Combos",
+    "slug": "gift-boxes",
+    "description": "Curated festival gift hampers packed with varieties for family celebrations.",
+    "image": "https://images.unsplash.com/photo-1513297887119-d46091b24bfa?auto=format&fit=crop&w=800&q=80",
+    "gradient": "from-yellow-400/30 to-red-700/10",
+    "count": 6,
+    "icon": "Gift"
+  },
+  {
+    "id": "fancy-novelty",
+    "name": "Fancy Novelty & Kids",
+    "slug": "fancy-novelty",
+    "description": "Colourful drones, helicopters, sirens, whistling fountains, and peacock spinners.",
+    "image": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80",
+    "gradient": "from-purple-500/30 to-pink-600/10",
+    "count": 6,
+    "icon": "Star"
+  }
+]
+

@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8F9FA;
+    --gold-primary: #D49A26;
+    --gold-light: #F5C45A;
+    --gold-dark: #9A6D14;
+    --red-deep: #8B1018;
+    --red-vibrant: #D81C28;
+    --red-glow: #FF3B47;
+    --text-primary: #18181B;
+    --text-muted: #64748B;
+  }
+
+  body {
+    background-color: #F8F9FA;
+    color: #18181B;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+  }
+
+  *, html, body, h1, h2, h3, h4, h5, h6, p, span, button, input, select, textarea, .font-cinzel, .font-playfair, .font-serif {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D81C28;
+}
+
+/* Glass & Glow utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.glass-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(216, 28, 40, 0.3);
+  box-shadow: 0 12px 30px -4px rgba(216, 28, 40, 0.12);
+}
+
+/* Rainbow Celebration Gradient (Matches 'OWN THE NIGHT SKY' in reference) */
+.rainbow-glow-text {
+  background: linear-gradient(90deg, #FF2E55 0%, #FFA826 22%, #FFD600 45%, #00E5FF 70%, #9D4EDD 90%, #FF007F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 35px rgba(255, 77, 109, 0.45));
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF1C5 0%, #F5C45A 50%, #C69225 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.red-gradient-text {
+  background: linear-gradient(135deg, #FF525D 0%, #D81C28 50%, #8B1018 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Buttons */
+.btn-red {
+  background: linear-gradient(135deg, #E6222E 0%, #B81520 50%, #8B1018 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 18px rgba(216, 28, 40, 0.35);
+}
+
+.btn-red:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(216, 28, 40, 0.55);
+  filter: brightness(1.08);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #FBE29D 0%, #F5C45A 50%, #D49D26 100%);
+  color: #090A0D;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(245, 196, 90, 0.25);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(245, 196, 90, 0.45);
+  filter: brightness(1.05);
+}
+
+.btn-yellow-pill {
+  background: #F5C45A;
+  color: #090A0D;
+  font-weight: 700;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.btn-yellow-pill:hover {
+  background: #FFE082;
+  transform: scale(1.04);
+}
+
+/* PyroWest style white product card */
+.product-card-white {
+  background: #FFFFFF;
+  color: #111827;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card-white:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 35px -10px rgba(245, 196, 90, 0.25);
+}
+
+/* Subtle particle sparkles */
+@keyframes sparkFloat {
+  0% { transform: translateY(0px) rotate(0deg) scale(0.9); opacity: 0.3; }
+  50% { transform: translateY(-20px) rotate(180deg) scale(1.1); opacity: 0.8; }
+  100% { transform: translateY(0px) rotate(360deg) scale(0.9); opacity: 0.3; }
+}
+
+.animate-spark {
+  animation: sparkFloat 6s ease-in-out infinite;
+}
