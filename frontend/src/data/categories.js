@@ -3,18 +3,19 @@ export const categories = [
     id: "all",
     name: "All Fireworks",
     slug: "all",
-    count: 36,
+    count: 102,
     icon: "Sparkles",
-    tagline: "Explore our entire premium fireworks collection"
+    tagline: "Explore our entire premium fireworks collection",
+    image: "/assets/categories/ComboPack.png"
   },
   {
     id: "sparklers",
     name: "Sparklers",
     slug: "sparklers",
     description: "Vibrant, smokeless, and glittering handheld sparks for all ages.",
-    image: "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=80",
+    image: "/assets/categories/sparkelers.png",
     gradient: "from-amber-500/30 to-yellow-600/10",
-    count: 8,
+    count: 14,
     icon: "Flame"
   },
   {
@@ -22,9 +23,9 @@ export const categories = [
     name: "Flower Pots",
     slug: "flower-pots",
     description: "Classic glittering conical fountains showering cascades of golden and silver stars.",
-    image: "https://images.unsplash.com/photo-1498931299472-f7a63a5a1cfa?auto=format&fit=crop&w=800&q=80",
+    image: "/assets/categories/Flower_Pot.png",
     gradient: "from-orange-500/30 to-red-600/10",
-    count: 6,
+    count: 18,
     icon: "Sparkle"
   },
   {
@@ -32,29 +33,39 @@ export const categories = [
     name: "Ground Chakkars",
     slug: "ground-chakkars",
     description: "High-speed spinning wheels forming dazzling luminous circles on the ground.",
-    image: "https://images.unsplash.com/photo-1531747056595-07f6cbbe10ad?auto=format&fit=crop&w=800&q=80",
+    image: "/assets/categories/Ground_Chakkars.png",
     gradient: "from-yellow-500/30 to-amber-600/10",
-    count: 5,
+    count: 10,
     icon: "Disc"
-  },
-  {
-    id: "aerial-shots",
-    name: "Aerial Sky Shots",
-    slug: "aerial-shots",
-    description: "Multi-shot sky cakes and giant shells filling the night sky with thunderous colours.",
-    image: "/assets/pon_murugan_hero.jpg",
-    gradient: "from-rose-500/30 to-red-700/10",
-    count: 7,
-    icon: "Rocket"
   },
   {
     id: "rockets",
     name: "Sky Rockets",
     slug: "rockets",
     description: "Swift ascending whistling rockets bursting into brilliant parachutes and double sounds.",
-    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
+    image: "/assets/categories/rocket_crackers.png",
     gradient: "from-red-600/30 to-amber-600/10",
-    count: 4,
+    count: 12,
+    icon: "Zap"
+  },
+  {
+    id: "aerial-shots",
+    name: "Aerial Sky Shots",
+    slug: "aerial-shots",
+    description: "Multi-shot sky cakes and giant shells filling the night sky with thunderous colours.",
+    image: "/assets/categories/Fancy.png",
+    gradient: "from-rose-500/30 to-red-700/10",
+    count: 24,
+    icon: "Rocket"
+  },
+  {
+    id: "sound-crackers",
+    name: "Bijili & Sound Crackers",
+    slug: "sound-crackers",
+    description: "Traditional rhythmic burst crackers crafted to awaken festive cheer and auspicious celebration spirits.",
+    image: "/assets/categories/bijili.png",
+    gradient: "from-red-700/30 to-orange-600/10",
+    count: 8,
     icon: "Zap"
   },
   {
@@ -62,19 +73,23 @@ export const categories = [
     name: "Gift Boxes & Combos",
     slug: "gift-boxes",
     description: "Curated festival gift hampers packed with varieties for family celebrations.",
-    image: "https://images.unsplash.com/photo-1513297887119-d46091b24bfa?auto=format&fit=crop&w=800&q=80",
+    image: "/assets/categories/gift_box.png",
     gradient: "from-yellow-400/30 to-red-700/10",
-    count: 6,
+    count: 8,
     icon: "Gift"
   },
   {
     id: "fancy-novelty",
-    name: "Fancy Novelty & Kids",
+    name: "Celebration Combos & Fancy",
     slug: "fancy-novelty",
-    description: "Colourful drones, helicopters, sirens, whistling fountains, and peacock spinners.",
-    image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80",
+    description: "Colourful drones, helicopters, sirens, whistling fountains, and complete family assortments.",
+    image: "/assets/categories/ComboPack.png",
     gradient: "from-purple-500/30 to-pink-600/10",
-    count: 6,
+    count: 5,
     icon: "Star"
   }
 ];
+
+export const getCategoryBySlug = (slug) => {
+  return categories.find((c) => c.slug === slug);
+};

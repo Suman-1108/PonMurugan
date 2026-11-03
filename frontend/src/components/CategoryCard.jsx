@@ -1,53 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
 
 const CategoryCard = ({ category }) => {
   return (
     <motion.div
       whileHover={{ y: -6 }}
       transition={{ duration: 0.25 }}
-      className="group relative rounded-2xl overflow-hidden glass-card h-72 sm:h-80 flex flex-col justify-end p-6 border border-white/10 hover:border-[#F5C45A]/50 transition-all duration-300"
+      className="group relative rounded-xl overflow-hidden bg-white border border-[#EBE4D8] hover:border-[#7A1518]/30 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col"
     >
       {/* Background Category Image */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="relative aspect-[16/10] overflow-hidden bg-gray-900 select-none">
         <img
           src={category.image}
           alt={category.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
-        {/* Dark & Brand Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#090A0D] via-[#090A0D]/70 to-transparent"></div>
-        <div className="absolute inset-0 bg-radial-at-t from-transparent to-[#090A0D]/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+        {/* Variety Count Badge */}
+        <span className="absolute top-2.5 right-2.5 bg-white/95 backdrop-blur-xs text-gray-800 text-[10px] font-extrabold px-2 py-0.5 rounded shadow-xs">
+          {category.count || '12+'} Varieties
+        </span>
       </div>
 
       {/* Foreground Content */}
-      <div className="relative z-10 flex flex-col">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#F5C45A] px-2.5 py-0.5 rounded-full bg-black/60 border border-[#F5C45A]/30">
-            {category.count} Varieties
-          </span>
-          <div className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-[#F5C45A] group-hover:text-black flex items-center justify-center text-white transition-all duration-300 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-            <ArrowUpRight className="w-4 h-4" />
-          </div>
+      <div className="p-4 sm:p-5 flex flex-col justify-between flex-grow">
+        <div>
+          <h3 className="font-serif text-lg sm:text-xl font-extrabold text-[#7A1518] group-hover:text-[#A81D24] transition-colors">
+            {category.name}
+          </h3>
+          <p className="text-xs text-gray-600 line-clamp-2 mt-1.5 leading-relaxed">
+            {category.description}
+          </p>
         </div>
-
-        <h3 className="font-sans text-xl sm:text-2xl font-bold text-white group-hover:text-[#F5C45A] transition-colors mb-2">
-          {category.name}
-        </h3>
-
-        <p className="text-xs text-[#B8B8B8] line-clamp-2 mb-4 leading-relaxed">
-          {category.description}
-        </p>
 
         <Link
           to={`/products?category=${category.slug}`}
-          className="inline-flex items-center text-xs font-bold text-amber-200 group-hover:text-[#F5C45A] transition-colors"
+          className="pt-3 mt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-extrabold tracking-wider text-[#C29B38] group-hover:text-[#7A1518] transition-colors uppercase"
         >
-          <span>Explore Category</span>
-          <span className="ml-1 text-base">→</span>
+          <span>EXPLORE COLLECTION</span>
+          <span className="text-base font-bold transition-transform group-hover:translate-x-1">→</span>
         </Link>
       </div>
     </motion.div>
@@ -55,4 +49,3 @@ const CategoryCard = ({ category }) => {
 };
 
 export default CategoryCard;
-

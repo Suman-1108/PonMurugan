@@ -26,10 +26,19 @@ import {
   Award
 } from 'lucide-react';
 
+import sparklersImg from '../assets/categories/sparkelers.png';
+import flowerPotImg from '../assets/categories/Flower_Pot.png';
+import chakkarsImg from '../assets/categories/Ground_Chakkars.png';
+import rocketsImg from '../assets/categories/rocket_crackers.png';
+import fancyImg from '../assets/categories/Fancy.png';
+import bijiliImg from '../assets/categories/bijili.png';
+import giftBoxImg from '../assets/categories/gift_box.png';
+import comboPackImg from '../assets/categories/ComboPack.png';
+
 const Home = () => {
   const featuredProducts = getFeaturedProducts();
 
-  // Curated collections catalog matching exact design
+  // Curated collections catalog using authentic Sivakasi category artwork
   const curatedCollections = [
     {
       title: 'Sparklers',
@@ -37,7 +46,7 @@ const Home = () => {
       variety: '14 Varieties',
       badge: 'TRADITIONAL LIGHTS',
       description: 'Handheld shimmering gold, silver, and multicolor sparklers for peaceful family celebrations.',
-      image: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=80'
+      image: sparklersImg
     },
     {
       title: 'Flower Pots',
@@ -45,7 +54,7 @@ const Home = () => {
       variety: '18 Varieties',
       badge: 'FOUNTAIN OF SPARKS',
       description: 'Majestic fountain showers rising up to 25 feet with sparkling golden and emerald stars.',
-      image: 'https://images.unsplash.com/photo-1498931299472-f7a63a5a1cfa?auto=format&fit=crop&w=800&q=80'
+      image: flowerPotImg
     },
     {
       title: 'Ground Chakkars',
@@ -53,7 +62,7 @@ const Home = () => {
       variety: '10 Varieties',
       badge: 'SPINNING WHEELS',
       description: 'Mesmerizing swirling discs emitting vivid circular rings of golden and multi-colored fire.',
-      image: 'https://images.unsplash.com/photo-1531747056595-07f6cbbe10ad?auto=format&fit=crop&w=800&q=80'
+      image: chakkarsImg
     },
     {
       title: 'Rockets',
@@ -61,7 +70,7 @@ const Home = () => {
       variety: '12 Varieties',
       badge: 'CELESTIAL ASCENTS',
       description: 'High-altitude whistling rockets bursting into expansive starry weeping willow and brocade crowns.',
-      image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80'
+      image: rocketsImg
     },
     {
       title: 'Fancy Fireworks',
@@ -69,7 +78,7 @@ const Home = () => {
       variety: '24 Varieties',
       badge: 'AERIAL MULTI-SHOTS',
       description: 'Multi-stage choreographed repeaters delivering synchronized sky bursts of royal purple, gold, and red.',
-      image: '/assets/pon_murugan_hero.jpg'
+      image: fancyImg
     },
     {
       title: 'Bijili Crackers',
@@ -77,7 +86,7 @@ const Home = () => {
       variety: '8 Varieties',
       badge: 'FESTIVE SOUNDS',
       description: 'Crisp rhythmic sound crackers crafted to awaken festive cheer and auspicious celebration spirits.',
-      image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80'
+      image: bijiliImg
     },
     {
       title: 'Gift Boxes',
@@ -85,7 +94,7 @@ const Home = () => {
       variety: '8 Curations',
       badge: 'HERITAGE ASSORTMENTS',
       description: 'Handcrafted luxury hamper assortments packaged in regal gold-embossed celebration boxes.',
-      image: 'https://images.unsplash.com/photo-1513297887119-d46091b24bfa?auto=format&fit=crop&w=800&q=80'
+      image: giftBoxImg
     },
     {
       title: 'Celebration Combos',
@@ -93,7 +102,7 @@ const Home = () => {
       variety: '5 Combos',
       badge: 'COMPLETE FAMILY PACKS',
       description: 'Curated all-in-one celebration bundles with sparklers, pots, chakkars, and fancy sky shots.',
-      image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80'
+      image: comboPackImg
     }
   ];
 
