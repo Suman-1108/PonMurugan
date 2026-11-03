@@ -5,6 +5,7 @@ import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import FloatingOrderBar from './components/FloatingOrderBar';
 import SearchModal from './components/SearchModal';
 
 // Pages
@@ -72,6 +73,9 @@ function App() {
 
         {/* Floating WhatsApp Quick Connect */}
         <WhatsAppButton />
+
+        {/* Global Floating Order Summary Bar (triggers on any item addition) */}
+        <FloatingOrderBar />
 
         {/* Main Routed Page Content */}
         <main className="flex-grow">

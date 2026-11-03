@@ -13,18 +13,21 @@ const Hero = () => {
       link: '/products?category=sparklers',
       buttonText: 'Shop Now'
     },
+
     {
       title: 'Event Fireworks',
       subtitle: 'Custom aerial multi-shots for weddings & temple festivals.',
       link: '/products?category=aerial-shots',
       buttonText: 'Explore'
     },
+
     {
       title: 'Seasonal Specials',
       subtitle: 'Limited-time 50% discount offers on top festival assortments.',
       link: '/products?category=all',
       buttonText: 'View Specials'
     },
+
     {
       title: 'Fireworks Packages',
       subtitle: 'Curated Maharaja gift boxes for every family budget.',

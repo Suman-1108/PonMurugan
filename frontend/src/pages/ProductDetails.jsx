@@ -17,6 +17,7 @@ import {
   Flame,
   Minus,
   Plus,
+  Eye,
   Sparkles,
   FileSpreadsheet
 } from 'lucide-react';
@@ -25,10 +26,26 @@ import toast from 'react-hot-toast';
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart } = useCart();
+  const { addToCart, cartItems, setItemQuantity, incrementItem, decrementItem } = useCart();
   const [quantity, setQuantity] = useState(1);
 
   const product = getProductById(id);
+
+  const getProductQuantity = (productId) => {
+    const found = cartItems.find(item => item.id === productId);
+    return found ? found.quantity : 0;
+  };
+
+  const handleInputChange = (item, val) => {
+    if (val === '') {
+      setItemQuantity(item, 0);
+      return;
+    }
+    const parsed = parseInt(val, 10);
+    if (!isNaN(parsed) && parsed >= 0) {
+      setItemQuantity(item, Math.min(parsed, 999));
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -266,21 +283,134 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        {/* Related Crackers (Image-Free Cards) */}
+        {/* Related Crackers (Image-Free Table Format) */}
         {relatedProducts.length > 0 && (
           <div>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl sm:text-2xl font-black text-gray-900">
-                Related Varieties in <span className="text-[#D81C28]">{product.categoryName}</span>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-serif text-2xl sm:text-3xl font-black text-[#7A1518]">
+                Related Varieties in <span className="text-[#C29B38]">{product.categoryName}</span>
               </h2>
-              <Link to={`/products?category=${product.category}`} className="text-xs font-bold text-[#D81C28] hover:underline">
+              <Link
+                to={`/products?category=${product.category}`}
+                className="text-xs font-bold text-[#7A1518] hover:text-[#C29B38] transition-colors"
+              >
                 View All {product.categoryName} →
               </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {relatedProducts.map(rel => (
-                <ProductCard key={rel.id} product={rel} />
-              ))}
+
+            <div className="bg-white rounded-2xl border border-[#EAE3D6] shadow-sm overflow-hidden mb-12">
+              <div className="overflow-x-auto no-scrollbar">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-[#FAF6F0] border-b border-[#EAE3D6] text-gray-800 text-[11px] sm:text-xs font-extrabold uppercase tracking-wider select-none">
+                      <th className="py-3.5 px-4 whitespace-nowrap">S.NO</th>
+                      <th className="py-3.5 px-5 whitespace-nowrap min-w-[220px]">PRODUCT NAME</th>
+                      <th className="py-3.5 px-4 whitespace-nowrap">PACK SIZE</th>
+                      <th className="py-3.5 px-4 whitespace-nowrap">MRP</th>
+                      <th className="py-3.5 px-4 whitespace-nowrap">SELLING PRICE</th>
+                      <th className="py-3.5 px-4 text-center whitespace-nowrap min-w-[140px]">QUANTITY</th>
+                      <th className="py-3.5 px-5 text-right whitespace-nowrap min-w-[110px]">TOTAL (₹)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 text-xs sm:text-sm">
+                    {relatedProducts.map((rel) => {
+                      const relDiscount = rel.mrp > rel.price
+                        ? Math.round(((rel.mrp - rel.price) / rel.mrp) * 100)
+                        : 0;
+                      const relQty = getProductQuantity(rel.id);
+                      const relTotal = relQty * rel.price;
+
+                      return (
+                        <tr
+                          key={rel.id}
+                          className={`hover:bg-[#FAF8F5] transition-colors group ${
+                            relQty > 0 ? 'bg-[#FFFDF9]' : ''
+                          }`}
+                        >
+                          <td className="py-3.5 px-4 font-bold text-gray-700 font-mono">
+                            {rel.no}
+                          </td>
+                          <td className="py-3.5 px-5">
+                            <Link
+                              to={`/products/${rel.id}`}
+                              className="font-serif font-bold text-gray-900 group-hover:text-[#7A1518] text-sm sm:text-base leading-snug transition-colors inline-flex items-center gap-1.5"
+                            >
+                              <span>{rel.name}</span>
+                              <Eye className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#7A1518] shrink-0 transition-colors" />
+                            </Link>
+                            <div className="flex items-center gap-2 mt-1 flex-wrap">
+                              <span className="bg-[#E8F5E9] text-[#2E7D32] border border-[#C8E6C9] text-[9px] font-extrabold px-1.5 py-0.2 rounded-full uppercase">
+                                IN STOCK
+                              </span>
+                              <span className="text-[#C29B38] text-[10px] font-semibold">
+                                ★ Festive Choice
+                              </span>
+                            </div>
+                          </td>
+                          <td className="py-3.5 px-4 whitespace-nowrap text-gray-600 font-medium font-mono text-xs">
+                            {rel.packSize || '1 Unit'}
+                          </td>
+                          <td className="py-3.5 px-4 whitespace-nowrap text-gray-400 line-through font-mono text-xs">
+                            ₹{rel.mrp}
+                          </td>
+                          <td className="py-3.5 px-4 whitespace-nowrap">
+                            <div className="flex items-baseline gap-1.5">
+                              <span className="font-extrabold text-gray-950 font-sans text-sm">
+                                ₹{rel.price}
+                              </span>
+                              {relDiscount > 0 && (
+                                <span className="text-[10px] font-bold text-[#D81C28]">
+                                  ({relDiscount}% OFF)
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="py-3 px-4 text-center whitespace-nowrap">
+                            <div className="inline-flex items-center border border-[#CFD8DC] rounded-lg bg-white overflow-hidden shadow-2xs hover:border-[#7A1518]/50 focus-within:border-[#7A1518]">
+                              <button
+                                type="button"
+                                onClick={() => decrementItem(rel)}
+                                disabled={relQty <= 0}
+                                className="w-7 h-7 flex items-center justify-center text-gray-700 hover:text-[#7A1518] hover:bg-gray-100 disabled:opacity-25 transition-colors font-bold text-sm"
+                                aria-label={`Decrease quantity of ${rel.name}`}
+                              >
+                                <Minus className="w-3 h-3 stroke-[2.5]" />
+                              </button>
+                              <input
+                                type="number"
+                                min="0"
+                                max="999"
+                                value={relQty === 0 ? '' : relQty}
+                                placeholder="0"
+                                onChange={(e) => handleInputChange(rel, e.target.value)}
+                                className="w-10 h-7 text-center font-bold text-gray-900 placeholder:text-gray-400 focus:outline-none text-xs font-sans [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-x border-[#EAE3D6] bg-transparent"
+                                aria-label={`Quantity of ${rel.name}`}
+                              />
+                              <button
+                                type="button"
+                                onClick={() => incrementItem(rel)}
+                                className="w-7 h-7 flex items-center justify-center text-gray-700 hover:text-[#7A1518] hover:bg-gray-100 transition-colors font-bold text-sm"
+                                aria-label={`Increase quantity of ${rel.name}`}
+                              >
+                                <Plus className="w-3 h-3 stroke-[2.5]" />
+                              </button>
+                            </div>
+                          </td>
+                          <td className="py-3.5 px-5 text-right whitespace-nowrap">
+                            <span
+                              className={`font-black font-sans text-sm ${
+                                relQty > 0 ? 'text-[#9A3412]' : 'text-gray-300'
+                              }`}
+                            >
+                              ₹{relTotal.toLocaleString('en-IN')}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         )}
