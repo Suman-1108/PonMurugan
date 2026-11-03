@@ -86,8 +86,14 @@ const Checkout = () => {
       setOrderSubmittedData({
         orderRef: `PM-ORD-${Date.now().toString().slice(-6)}`,
         requiresBackend: res.requiresBackend,
-        instructions: res.instructions || 'Order details saved. Please confirm transport booking with our Sivakasi sales desk.'
+        instructions: res.instructions || 'Order details saved. Please confirm transport booking with our Sivakasi sales desk.',
+        customer: { ...formData },
+        items: [...cartItems],
+        subtotal,
+        deliveryFee,
+        total: finalTotal
       });
+      clearCart();
     } catch {
       toast.error('Network error during order submission. Connecting via WhatsApp...');
     } finally {
@@ -101,91 +107,129 @@ const Checkout = () => {
   }
 
   const generateWhatsAppOrderText = () => {
-    const itemList = cartItems.map(i => `• ${i.name} (Qty: ${i.quantity}) - ₹${i.price * i.quantity}`).join('\n');
+    const items = orderSubmittedData?.items || cartItems;
+    const sub = orderSubmittedData?.subtotal || subtotal;
+    const del = orderSubmittedData?.deliveryFee || deliveryFee;
+    const tot = orderSubmittedData?.total || finalTotal;
+    const cust = orderSubmittedData?.customer || formData;
+    const ref = orderSubmittedData?.orderRef || 'PM-ORD-NEW';
+
+    const itemList = items.map(i => `• ${i.name} (Qty: ${i.quantity}) - ₹${i.price * i.quantity}`).join('\n');
     return encodeURIComponent(
-      `🎆 *PON MURUGAN FIREWORKS - ORDER BOOKING REQUEST* 🎆\n\n` +
+      `🎆 *PON MURUGAN FIREWORKS - ORDER BOOKING* 🎆\n\n` +
+      `*Booking Ref:* ${ref}\n` +
       `*Customer Details:*\n` +
-      `Name: ${formData.fullName}\n` +
-      `Phone: ${formData.mobileNumber}\n` +
-      `Address: ${formData.address}, ${formData.district}, ${formData.state} - ${formData.pincode}\n\n` +
+      `Name: ${cust.fullName}\n` +
+      `Phone: ${cust.mobileNumber}\n` +
+      `Address: ${cust.address}, ${cust.district}, ${cust.state} - ${cust.pincode}\n\n` +
       `*Ordered Items:*\n${itemList}\n\n` +
-      `*Subtotal:* ₹${subtotal}\n` +
-      `*Transport Fee:* ₹${deliveryFee}\n` +
-      `*Total Estimated:* ₹${finalTotal}\n\n` +
-      `Please verify transport parcel booking availability for my area and send payment instructions.`
+      `*Subtotal:* ₹${sub}\n` +
+      `*Transport Fee:* ₹${del}\n` +
+      `*Total Estimated:* ₹${tot}\n\n` +
+      `Please confirm dispatch clearance and transport hub pickup point.`
     );
   };
 
   return (
-    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-28 pb-20">
+    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-40 sm:pt-48 pb-20">
       <div className="w-full max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16">
-        {/* Header */}
-        <div className="mb-8">
-          <Link to="/cart" className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#D81C28] mb-3">
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Shopping Cart</span>
-          </Link>
-          <h1 className="font-sans text-3xl sm:text-4xl font-black text-gray-900">
-            Checkout &amp; <span className="text-[#D81C28]">Transport Booking</span>
-          </h1>
-          <p className="text-xs sm:text-sm text-gray-600 mt-1">
-            Complete your delivery details for licensed Sivakasi explosives transport dispatch.
-          </p>
-        </div>
-
-        {/* Order Submission Status Modal / Confirmation Box */}
+        {/* Order Submission Status / Confirmation Box */}
         {orderSubmittedData ? (
-          <div className="max-w-2xl mx-auto bg-white border border-gray-200 rounded-3xl p-8 sm:p-12 text-center shadow-xl">
-            <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 mx-auto flex items-center justify-center mb-5 border border-emerald-200">
-              <FileText className="w-8 h-8" />
-            </div>
+          <div className="max-w-2xl mx-auto py-2 sm:py-6 animate-in fade-in zoom-in-95 duration-300">
+            <div className="bg-white border border-[#EAE3D6] rounded-3xl p-6 sm:p-10 text-center shadow-xl relative overflow-hidden">
+              {/* Top Accent Ribbon */}
+              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#7A1518] via-[#C29B38] to-[#7A1518]"></div>
 
-            <span className="text-xs font-bold uppercase tracking-widest text-[#D81C28] px-3 py-1 rounded-full bg-red-50 border border-red-200 inline-block mb-3">
-              Order Intent Registered
-            </span>
+              {/* Verified Icon */}
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-emerald-50 text-emerald-600 mx-auto flex items-center justify-center mb-5 border-2 border-emerald-200 shadow-sm">
+                <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10" />
+              </div>
 
-            <h2 className="font-sans text-2xl sm:text-3xl font-black text-gray-900 mb-2">
-              Booking Ref: <span className="text-[#D81C28]">{orderSubmittedData.orderRef}</span>
-            </h2>
+              {/* Status Badge */}
+              <span className="text-xs font-bold uppercase tracking-widest text-[#7A1518] px-3.5 py-1 rounded-full bg-[#FAF6F0] border border-[#E5DAC6] inline-block mb-3">
+                Order Intent Registered
+              </span>
 
-            <p className="text-sm text-gray-600 mb-6 leading-relaxed">
-              In accordance with legal explosives delivery regulations, orders are dispatched via licensed Sivakasi parcel transport hubs. Your order intent has been logged.
-            </p>
+              {/* Booking Reference */}
+              <h2 className="font-serif text-2xl sm:text-3xl font-black text-gray-900 mb-2">
+                Booking Ref: <span className="text-[#7A1518] font-mono">{orderSubmittedData.orderRef}</span>
+              </h2>
 
-            {/* Legal / Payment Integration Note */}
-            <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-xs text-left mb-6 space-y-2 text-gray-600">
-              <p className="font-bold text-gray-900 flex items-center gap-1.5">
-                <AlertCircle className="w-4 h-4 text-amber-500 shrink-0" />
-                <span>Configurable Gateway Notice:</span>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-6 max-w-lg mx-auto">
+                In accordance with legal explosives delivery regulations, orders are dispatched via licensed Sivakasi parcel transport hubs. Your order intent has been logged.
               </p>
-              <p className="text-gray-600">
-                Payment gateway API integration is kept configurable for live backend connection. To prevent unauthorized fireworks shipments, no simulated payment is charged online without real dispatch clearance.
-              </p>
-            </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href={`https://wa.me/918098443633?text=${generateWhatsAppOrderText()}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => clearCart()}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-sm text-white flex items-center justify-center gap-2 shadow-xl shadow-emerald-600/30"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>Confirm Order via WhatsApp</span>
-              </a>
+              {/* Customer & Order Summary Snapshot */}
+              <div className="bg-[#FAF8F5] border border-[#EBE4D8] rounded-2xl p-4 sm:p-5 mb-6 text-left text-xs text-gray-700 space-y-2.5">
+                <div className="flex items-center justify-between pb-2 border-b border-[#EAE3D6]">
+                  <span className="text-gray-500 font-bold uppercase tracking-wider text-[10px]">Customer Name:</span>
+                  <span className="font-bold text-gray-900">{orderSubmittedData.customer?.fullName || formData.fullName}</span>
+                </div>
+                <div className="flex items-center justify-between pb-2 border-b border-[#EAE3D6]">
+                  <span className="text-gray-500 font-bold uppercase tracking-wider text-[10px]">Mobile Contact:</span>
+                  <span className="font-bold text-gray-900">{orderSubmittedData.customer?.mobileNumber || formData.mobileNumber}</span>
+                </div>
+                <div className="flex items-center justify-between pb-2 border-b border-[#EAE3D6]">
+                  <span className="text-gray-500 font-bold uppercase tracking-wider text-[10px]">Delivery Destination:</span>
+                  <span className="font-bold text-gray-900">
+                    {orderSubmittedData.customer?.district || formData.district}, {orderSubmittedData.customer?.state || formData.state} - {orderSubmittedData.customer?.pincode || formData.pincode}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between pt-1 font-bold">
+                  <span className="text-[#7A1518] uppercase tracking-wider text-xs">Total Order Value:</span>
+                  <span className="text-[#7A1518] text-base sm:text-lg font-black">₹{(orderSubmittedData.total || finalTotal).toLocaleString('en-IN')}</span>
+                </div>
+              </div>
 
-              <Link
-                to="/"
-                onClick={() => clearCart()}
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-sm transition-colors"
-              >
-                Return to Home
-              </Link>
+              {/* Sivakasi Transport Dispatch Notice */}
+              <div className="p-3.5 sm:p-4 rounded-xl bg-amber-50/80 border border-amber-200/80 text-xs text-left mb-6 space-y-1.5 text-amber-900">
+                <p className="font-bold flex items-center gap-1.5 text-amber-950">
+                  <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+                  <span>Sivakasi Transport Dispatch Notice:</span>
+                </p>
+                <p className="text-[11px] sm:text-xs text-amber-800 leading-relaxed">
+                  In accordance with fireworks transport protocols, our Sivakasi sales desk will verify your order items and dispatch slot. Please click below to confirm your booking via WhatsApp for instantaneous bill generation.
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a
+                  href={`https://wa.me/918098443633?text=${generateWhatsAppOrderText()}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-sm text-white flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition-all active:scale-95"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Confirm Order via WhatsApp</span>
+                </a>
+
+                <Link
+                  to="/"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl border border-gray-300 hover:bg-gray-50 font-bold text-sm text-gray-700 transition-colors"
+                >
+                  Return to Home
+                </Link>
+              </div>
             </div>
           </div>
         ) : (
-          <form onSubmit={handleFormSubmit}>
+          <>
+            {/* Form Header (Only shown during active form completion) */}
+            <div className="mb-8">
+              <Link to="/cart" className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#7A1518] mb-3">
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>Back to Shopping Cart</span>
+              </Link>
+              <h1 className="font-serif text-3xl sm:text-4xl font-black text-gray-900">
+                Checkout &amp; <span className="text-[#7A1518]">Transport Booking</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                Complete your delivery details for licensed Sivakasi explosives transport dispatch.
+              </p>
+            </div>
+
+            <form onSubmit={handleFormSubmit}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Shipping Address & Customer Details */}
               <div className="lg:col-span-7 space-y-6">
@@ -418,6 +462,7 @@ const Checkout = () => {
               </div>
             </div>
           </form>
+        </>
         )}
       </div>
     </div>

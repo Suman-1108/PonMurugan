@@ -5,7 +5,7 @@ import { ShieldCheck, Flame, Sparkles, Award, Users, CheckCircle, ArrowRight, He
 
 const About = () => {
   return (
-    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-28 pb-20">
+    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-40 sm:pt-48 pb-20">
       {/* Hero Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
         <motion.div

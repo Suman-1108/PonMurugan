@@ -37,7 +37,7 @@ const ProductDetails = () => {
 
   if (!product) {
     return (
-      <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-36 pb-20 text-center px-4">
+      <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-44 sm:pt-48 pb-20 text-center px-4">
         <h2 className="font-sans text-3xl font-black text-gray-900 mb-4">Product Not Found</h2>
         <p className="text-sm text-gray-600 mb-8">The requested fireworks product could not be located in our catalogue.</p>
         <Link to="/products" className="btn-red px-8 py-3.5 rounded-xl text-sm font-bold inline-flex items-center gap-2">
@@ -66,7 +66,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-28 pb-20">
+    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-40 sm:pt-48 pb-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Navigation & Breadcrumbs */}
         <div className="flex items-center justify-between mb-8">

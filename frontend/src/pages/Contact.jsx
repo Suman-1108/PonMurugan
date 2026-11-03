@@ -52,7 +52,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-28 pb-20">
+    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-40 sm:pt-48 pb-20">
       {/* Header */}
       <div className="w-full max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16 mb-16 text-center">
         <span className="text-xs font-bold uppercase tracking-widest text-[#D81C28] px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 inline-block mb-3">

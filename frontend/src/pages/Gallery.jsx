@@ -95,7 +95,7 @@ const Gallery = () => {
     : galleryPhotos.filter(p => p.category === filter);
 
   return (
-    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-28 pb-20">
+    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-40 sm:pt-48 pb-20">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
         <span className="text-xs font-bold uppercase tracking-widest text-[#8B1018] px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 inline-block mb-3">

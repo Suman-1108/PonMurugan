@@ -87,7 +87,7 @@ const Products = () => {
   const hasMore = visibleCount < filteredAndSortedProducts.length;
 
   return (
-    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-28 pb-20">
+    <div className="bg-[#F8F9FA] min-h-screen text-gray-900 pt-40 sm:pt-48 pb-20">
       {/* Header Banner */}
       <div className="w-full max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16 mb-10">
         <div className="text-center max-w-3xl mx-auto">
