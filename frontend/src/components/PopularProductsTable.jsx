@@ -120,7 +120,7 @@ const PopularProductsTable = () => {
   };
 
   return (
-    <section className="py-16 sm:py-20 w-full max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16 font-sans">
+    <section className="pt-12 sm:pt-16 pb-8 sm:pb-10 w-full max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16 font-sans">
       {/* Top Section Header */}
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
         <div>

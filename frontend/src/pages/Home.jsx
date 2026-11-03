@@ -238,10 +238,10 @@ const Home = () => {
       <PopularProductsTable />
 
       {/* Why Choose Pon Murugan & Make Every Celebration Memorable Sections */}
-      <section className="pt-0 pb-16 sm:pb-24 bg-[#FAF8F5] border-b border-[#EBE4D8]">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="pt-0 pb-12 sm:pb-16 bg-[#FAF8F5] border-b border-[#EBE4D8]">
+        <div className="w-full max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16">
           {/* Section Header */}
-          <div className="text-center mb-12 sm:mb-14">
+          <div className="text-center mb-8 sm:mb-10">
             <span className="text-[11px] sm:text-xs font-bold tracking-[0.28em] text-[#C29B38] uppercase block mb-1.5">
               OUR UNCOMPROMISING STANDARD
             </span>
@@ -307,7 +307,7 @@ const Home = () => {
           </div>
 
           {/* Make Every Celebration Memorable Banner Card */}
-          <div className="mt-14 sm:mt-20 bg-white rounded-2xl sm:rounded-3xl border border-[#EAE3D6] shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch">
+          <div className="mt-8 sm:mt-12 bg-white rounded-2xl sm:rounded-3xl border border-[#EAE3D6] shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch">
             {/* Left Column: Text & CTAs */}
             <div className="lg:col-span-6 p-8 sm:p-12 lg:p-14 flex flex-col justify-center">
               <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF3E7] border border-[#E8DEC9] text-[#9A7228] text-[11px] font-bold uppercase tracking-wider mb-5 w-fit">
