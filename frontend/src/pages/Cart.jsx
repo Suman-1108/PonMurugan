@@ -11,7 +11,8 @@ import {
   Sparkles,
   AlertCircle,
   CheckCircle2,
-  ArrowLeft
+  ArrowLeft,
+  MessageCircle
 } from 'lucide-react';
 
 const Cart = () => {
@@ -24,7 +25,8 @@ const Cart = () => {
     deliveryFee,
     minOrderAmount,
     isEligibleForOrder,
-    totalItemsCount
+    totalItemsCount,
+    getWhatsAppOrderMessage
   } = useCart();
   const navigate = useNavigate();
 
@@ -187,6 +189,19 @@ const Cart = () => {
                 <span>Proceed to Checkout</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
+
+              {/* Direct WhatsApp Order Button */}
+              <div className="mt-3">
+                <a
+                  href={`https://wa.me/918098443633?text=${getWhatsAppOrderMessage()}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white border border-emerald-300 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-xs"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Send Order to WhatsApp</span>
+                </a>
+              </div>
 
               <div className="mt-5 space-y-2 text-[11px] text-gray-500 text-center">
                 <p className="flex items-center justify-center gap-1.5">

@@ -121,6 +121,53 @@ export const CartProvider = ({ children }) => {
   const deliveryFee = subtotal >= 3000 || subtotal === 0 ? 0 : 250;
   const isEligibleForOrder = subtotal >= minOrderAmount;
 
+  // Generate detailed WhatsApp message with item names, pack sizes, quantities, and item totals
+  const getWhatsAppOrderMessage = (customerDetails = null, customItems = null) => {
+    const items = customItems || cartItems;
+    if (items.length === 0) {
+      return encodeURIComponent(
+        'Hello PON MURUGAN Fireworks! I would like to inquire about your premium fireworks collection and wholesale pricing.'
+      );
+    }
+
+    const currentSubtotal = items.reduce((acc, i) => acc + (i.price * i.quantity), 0);
+    const currentItemsCount = items.reduce((acc, i) => acc + i.quantity, 0);
+    const currentMrp = items.reduce((acc, i) => acc + (i.mrp * i.quantity), 0);
+    const currentSavings = currentMrp - currentSubtotal;
+
+    const itemsText = items
+      .map(
+        (item, index) =>
+          `${index + 1}. *${item.name}* (${item.packSize || '1 Unit'})\n   Qty: ${item.quantity} × ₹${item.price} = *₹${(item.quantity * item.price).toLocaleString('en-IN')}*`
+      )
+      .join('\n\n');
+
+    let message =
+      `🎆 *PON MURUGAN PREMIUM FIREWORKS* 🎆\n` +
+      `*ORDER ESTIMATE & ENQUIRY*\n` +
+      `------------------------------------\n\n` +
+      `${itemsText}\n\n` +
+      `------------------------------------\n` +
+      `📦 *Total Quantity:* ${currentItemsCount} items (${items.length} ${items.length === 1 ? 'variety' : 'varieties'})\n` +
+      `💰 *Estimated Total:* ₹${currentSubtotal.toLocaleString('en-IN')}\n`;
+
+    if (currentSavings > 0) {
+      message += `🎉 *Factory Savings:* ₹${currentSavings.toLocaleString('en-IN')}\n`;
+    }
+
+    if (customerDetails) {
+      message +=
+        `\n*Customer Details:*\n` +
+        `• Name: ${customerDetails.fullName || ''}\n` +
+        `• Phone: ${customerDetails.mobileNumber || ''}\n` +
+        `• Address: ${customerDetails.address || ''}, ${customerDetails.district || ''}, ${customerDetails.state || ''} - ${customerDetails.pincode || ''}\n`;
+    }
+
+    message += `\nPlease confirm stock availability and transport parcel delivery details!`;
+
+    return encodeURIComponent(message);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -138,7 +185,8 @@ export const CartProvider = ({ children }) => {
         totalSavings,
         deliveryFee,
         minOrderAmount,
-        isEligibleForOrder
+        isEligibleForOrder,
+        getWhatsAppOrderMessage
       }}
     >
       {children}

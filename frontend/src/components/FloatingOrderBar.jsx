@@ -11,7 +11,8 @@ const FloatingOrderBar = () => {
     subtotal,
     totalMrp,
     totalSavings,
-    minOrderAmount
+    minOrderAmount,
+    getWhatsAppOrderMessage
   } = useCart();
   const location = useLocation();
 
@@ -87,12 +88,10 @@ const FloatingOrderBar = () => {
             </button>
 
             <a
-              href={`https://wa.me/918098443633?text=${encodeURIComponent(
-                `Hello PON MURUGAN Fireworks, I selected ${totalItemsCount} items (${cartItems.length} varieties) worth ₹${subtotal.toLocaleString('en-IN')}. Please share wholesale confirmation and transport details!`
-              )}`}
+              href={`https://wa.me/918098443633?text=${getWhatsAppOrderMessage()}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold text-xs transition-colors"
+              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold text-xs transition-colors whitespace-nowrap"
             >
               <span>WhatsApp Estimate</span>
             </a>

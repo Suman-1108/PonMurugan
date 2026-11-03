@@ -4,14 +4,16 @@ import { useCart } from '../context/CartContext';
 
 const WhatsAppButton = () => {
   const [showTooltip, setShowTooltip] = useState(false);
-  const { totalItemsCount } = useCart();
+  const { totalItemsCount, getWhatsAppOrderMessage } = useCart();
   const phoneNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '918098443633';
   
   const defaultMessage = encodeURIComponent(
     'Hello PON MURUGAN Fireworks! I would like to inquire about your premium fireworks collection and wholesale pricing.'
   );
 
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`;
+  const whatsappUrl = totalItemsCount > 0
+    ? `https://wa.me/${phoneNumber}?text=${getWhatsAppOrderMessage()}`
+    : `https://wa.me/${phoneNumber}?text=${defaultMessage}`;
 
   return (
     <div className={`fixed ${totalItemsCount > 0 ? 'bottom-24 sm:bottom-22' : 'bottom-6'} right-4 sm:right-6 z-40 flex flex-col items-end transition-all duration-300`}>

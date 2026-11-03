@@ -114,19 +114,31 @@ const Checkout = () => {
     const cust = orderSubmittedData?.customer || formData;
     const ref = orderSubmittedData?.orderRef || 'PM-ORD-NEW';
 
-    const itemList = items.map(i => `• ${i.name} (Qty: ${i.quantity}) - ₹${i.price * i.quantity}`).join('\n');
+    const itemList = items
+      .map(
+        (i, index) =>
+          `${index + 1}. *${i.name}* (${i.packSize || '1 Unit'})\n   Qty: ${i.quantity} × ₹${i.price} = *₹${(i.price * i.quantity).toLocaleString('en-IN')}*`
+      )
+      .join('\n\n');
+
     return encodeURIComponent(
-      `🎆 *PON MURUGAN FIREWORKS - ORDER BOOKING* 🎆\n\n` +
-      `*Booking Ref:* ${ref}\n` +
-      `*Customer Details:*\n` +
-      `Name: ${cust.fullName}\n` +
-      `Phone: ${cust.mobileNumber}\n` +
-      `Address: ${cust.address}, ${cust.district}, ${cust.state} - ${cust.pincode}\n\n` +
-      `*Ordered Items:*\n${itemList}\n\n` +
-      `*Subtotal:* ₹${sub}\n` +
-      `*Transport Fee:* ₹${del}\n` +
-      `*Total Estimated:* ₹${tot}\n\n` +
-      `Please confirm dispatch clearance and transport hub pickup point.`
+      `🎆 *PON MURUGAN PREMIUM FIREWORKS* 🎆\n` +
+      `*ORDER BOOKING CONFIRMATION*\n` +
+      `------------------------------------\n` +
+      `🔖 *Booking Ref:* ${ref}\n\n` +
+      `*Customer & Dispatch Details:*\n` +
+      `• Name: ${cust.fullName}\n` +
+      `• Mobile: ${cust.mobileNumber}\n` +
+      `• Address: ${cust.address}, ${cust.district}, ${cust.state} - ${cust.pincode}\n\n` +
+      `*Selected Items:*\n` +
+      `------------------------------------\n` +
+      `${itemList}\n` +
+      `------------------------------------\n\n` +
+      `📦 *Total Quantity:* ${items.reduce((acc, i) => acc + i.quantity, 0)} items (${items.length} varieties)\n` +
+      `💰 *Items Subtotal:* ₹${sub.toLocaleString('en-IN')}\n` +
+      `🚚 *Transport Fee:* ${del === 0 ? 'FREE' : `₹${del}`}\n` +
+      `💵 *Total Estimated Amount:* ₹${tot.toLocaleString('en-IN')}\n\n` +
+      `Please confirm dispatch allocation and transport parcel booking clearance!`
     );
   };
 
