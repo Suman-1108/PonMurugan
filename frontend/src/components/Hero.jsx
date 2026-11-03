@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, Phone, Sparkles } from 'lucide-react';
+import heroBannerImg from '../assets/images/hero_banner_full.jpg';
 
 const Hero = () => {
   const quickCategories = [
@@ -38,15 +39,18 @@ const Hero = () => {
         PON MURUGAN – Celebrate Every Moment With Brilliance. Sivakasi Premium Fireworks & Crackers
       </h1>
 
-      {/* Main Full-Size Cinematic Banner (Edge-to-Edge 100% Full Width) */}
-      <div className="relative w-full aspect-[2/1] select-none overflow-hidden bg-black shadow-xl">
+      {/* Main Full-Size Cinematic Panoramic Banner (Exact 3:1 Aspect Ratio) */}
+      <div className="relative w-full aspect-[3/1] select-none overflow-hidden bg-[#0A0B10] shadow-xl">
         {/* Pristine High-Resolution Banner Artwork with Complete Built-in Typography & Logo */}
         <img
-          src="/assets/hero_banner_full.jpg"
+          src={heroBannerImg}
           alt="PON MURUGAN – Celebrate Every Moment With Brilliance"
           className="w-full h-full object-cover object-center block"
           loading="eager"
           decoding="async"
+          onError={(e) => {
+            e.target.src = '/assets/hero_banner_full.jpg';
+          }}
         />
 
         {/* Interactive Clickable Hotspots mapped directly over the banner buttons */}
@@ -57,7 +61,7 @@ const Hero = () => {
               to="/products"
               title="Explore Our Products"
               aria-label="Explore Our Products"
-              className="pointer-events-auto absolute left-[53.5%] top-[55.5%] w-[20%] h-[7%] rounded-full cursor-pointer hover:shadow-[0_0_30px_rgba(245,196,90,0.9)] hover:brightness-110 active:scale-95 transition-all duration-200"
+              className="pointer-events-auto absolute left-[45%] top-[59%] w-[16%] h-[9%] rounded-full cursor-pointer hover:shadow-[0_0_30px_rgba(245,196,90,0.9)] hover:brightness-110 active:scale-95 transition-all duration-200"
             >
               <span className="sr-only">Explore Our Products</span>
             </Link>
@@ -67,7 +71,7 @@ const Hero = () => {
               to="/contact"
               title="Contact Us"
               aria-label="Contact Us"
-              className="pointer-events-auto absolute left-[75.2%] top-[55.5%] w-[14%] h-[7%] rounded-full cursor-pointer hover:shadow-[0_0_25px_rgba(255,255,255,0.7)] hover:brightness-125 active:scale-95 transition-all duration-200"
+              className="pointer-events-auto absolute left-[62.5%] top-[59%] w-[11%] h-[9%] rounded-full cursor-pointer hover:shadow-[0_0_25px_rgba(255,255,255,0.7)] hover:brightness-125 active:scale-95 transition-all duration-200"
             >
               <span className="sr-only">Contact Us</span>
             </Link>
@@ -109,5 +113,4 @@ const Hero = () => {
     </section>
   );
 };
-
 export default Hero;
