@@ -1,18 +1,38 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Eye, Search, Check, ChevronLeft, ChevronRight, ArrowUpDown, Sparkles } from 'lucide-react';
+import {
+  ShoppingBag,
+  Eye,
+  Search,
+  Minus,
+  Plus,
+  Trash2,
+  ArrowRight,
+  ArrowUpDown,
+  Sparkles
+} from 'lucide-react';
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
-import toast from 'react-hot-toast';
 
 const PopularProductsTable = () => {
-  const { addToCart } = useCart();
+  const {
+    cartItems,
+    setItemQuantity,
+    incrementItem,
+    decrementItem,
+    clearCart,
+    totalItemsCount,
+    subtotal,
+    totalMrp,
+    totalSavings,
+    minOrderAmount
+  } = useCart();
+
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortField, setSortField] = useState('no'); // 'no', 'name', 'price', 'mrp'
   const [sortOrder, setSortOrder] = useState('asc'); // 'asc', 'desc'
   const [currentPage, setCurrentPage] = useState(1);
-  const [addedItemIds, setAddedItemIds] = useState({});
   const itemsPerPage = 8;
 
   // Category filter tabs matching exact reference image
@@ -80,13 +100,28 @@ const PopularProductsTable = () => {
     }
   };
 
-  const handleAddToCart = (product) => {
-    addToCart(product, 1);
-    setAddedItemIds(prev => ({ ...prev, [product.id]: true }));
-    toast.success(`Added ${product.name} to cart!`, { icon: '🛒' });
-    setTimeout(() => {
-      setAddedItemIds(prev => ({ ...prev, [product.id]: false }));
-    }, 1500);
+  const getProductQuantity = (productId) => {
+    const found = cartItems.find(item => item.id === productId);
+    return found ? found.quantity : 0;
+  };
+
+  const handleDecrement = (product) => {
+    decrementItem(product);
+  };
+
+  const handleIncrement = (product) => {
+    incrementItem(product);
+  };
+
+  const handleInputChange = (product, val) => {
+    if (val === '') {
+      setItemQuantity(product, 0);
+      return;
+    }
+    const parsed = parseInt(val, 10);
+    if (!isNaN(parsed) && parsed >= 0) {
+      setItemQuantity(product, Math.min(parsed, 999));
+    }
   };
 
   return (
@@ -205,8 +240,12 @@ const PopularProductsTable = () => {
                   </div>
                 </th>
 
-                <th className="py-3.5 px-5 text-right whitespace-nowrap">
-                  ACTION
+                <th className="py-3.5 px-4 text-center whitespace-nowrap min-w-[140px]">
+                  QUANTITY
+                </th>
+
+                <th className="py-3.5 px-5 text-right whitespace-nowrap min-w-[120px]">
+                  TOTAL (₹)
                 </th>
               </tr>
             </thead>
@@ -215,7 +254,7 @@ const PopularProductsTable = () => {
             <tbody className="divide-y divide-gray-100 text-xs sm:text-sm">
               {displayedProducts.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center text-gray-500">
+                  <td colSpan={8} className="py-12 text-center text-gray-500">
                     <Sparkles className="w-8 h-8 text-[#C29B38] mx-auto mb-2 opacity-50" />
                     <p className="font-bold text-gray-800">No products found matching your search</p>
                     <p className="text-xs text-gray-500 mt-1">Try searching for a different keyword or category</p>
@@ -226,12 +265,15 @@ const PopularProductsTable = () => {
                   const discountPercent = product.mrp > product.price
                     ? Math.round(((product.mrp - product.price) / product.mrp) * 100)
                     : 0;
-                  const isAdded = addedItemIds[product.id];
+                  const currentQty = getProductQuantity(product.id);
+                  const itemTotal = currentQty * product.price;
 
                   return (
                     <tr
                       key={product.id}
-                      className="hover:bg-[#FAF8F5] transition-colors group"
+                      className={`hover:bg-[#FAF8F5] transition-colors group ${
+                        currentQty > 0 ? 'bg-[#FFFDF9]' : ''
+                      }`}
                     >
                       {/* S.No */}
                       <td className="py-4 px-4 font-bold text-gray-700 font-mono">
@@ -242,9 +284,10 @@ const PopularProductsTable = () => {
                       <td className="py-4 px-5">
                         <Link
                           to={`/products/${product.id}`}
-                          className="font-serif font-bold text-gray-900 group-hover:text-[#7A1518] text-sm sm:text-base leading-snug transition-colors block"
+                          className="font-serif font-bold text-gray-900 group-hover:text-[#7A1518] text-sm sm:text-base leading-snug transition-colors inline-flex items-center gap-1.5"
                         >
-                          {product.name}
+                          <span>{product.name}</span>
+                          <Eye className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#7A1518] shrink-0 transition-colors" title="View details" />
                         </Link>
                         <div className="flex items-center gap-2 mt-1.5 flex-wrap">
                           <span className="bg-[#E8F5E9] text-[#2E7D32] border border-[#C8E6C9] text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">
@@ -288,39 +331,48 @@ const PopularProductsTable = () => {
                         </div>
                       </td>
 
-                      {/* Action Buttons: ADD & Details */}
-                      <td className="py-4 px-5 text-right whitespace-nowrap">
-                        <div className="inline-flex items-center gap-2">
+                      {/* QUANTITY Stepper with Minus, Centered Input, Plus matching reference image */}
+                      <td className="py-3.5 px-4 text-center whitespace-nowrap">
+                        <div className="inline-flex items-center border border-[#CFD8DC] rounded-lg bg-white overflow-hidden shadow-2xs hover:border-[#7A1518]/50 focus-within:border-[#7A1518] focus-within:ring-1 focus-within:ring-[#7A1518]/20 transition-all">
                           <button
                             type="button"
-                            onClick={() => handleAddToCart(product)}
-                            className={`px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-all active:scale-95 shadow-2xs ${
-                              isAdded
-                                ? 'bg-emerald-600 text-white'
-                                : 'bg-[#7A1518] hover:bg-[#8B1E1E] text-white'
-                            }`}
+                            onClick={() => handleDecrement(product)}
+                            disabled={currentQty <= 0}
+                            className="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-[#7A1518] hover:bg-gray-100 disabled:opacity-25 disabled:hover:bg-transparent disabled:hover:text-gray-400 transition-colors select-none font-bold text-base"
+                            aria-label={`Decrease quantity of ${product.name}`}
                           >
-                            {isAdded ? (
-                              <>
-                                <Check className="w-3.5 h-3.5" />
-                                <span>ADDED</span>
-                              </>
-                            ) : (
-                              <>
-                                <ShoppingBag className="w-3.5 h-3.5" />
-                                <span>ADD</span>
-                              </>
-                            )}
+                            <Minus className="w-3.5 h-3.5 stroke-[2.5]" />
                           </button>
-
-                          <Link
-                            to={`/products/${product.id}`}
-                            className="px-2.5 py-1.5 rounded-md border border-[#E5DAC6] hover:border-[#7A1518] text-gray-700 hover:text-[#7A1518] text-xs font-semibold flex items-center gap-1 transition-colors bg-white"
+                          <input
+                            type="number"
+                            min="0"
+                            max="999"
+                            value={currentQty === 0 ? '' : currentQty}
+                            placeholder="0"
+                            onChange={(e) => handleInputChange(product, e.target.value)}
+                            className="w-12 h-8 text-center font-bold text-gray-900 placeholder:text-gray-400 focus:outline-none text-sm font-sans [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-x border-[#EAE3D6] bg-transparent"
+                            aria-label={`Quantity of ${product.name}`}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => handleIncrement(product)}
+                            className="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-[#7A1518] hover:bg-gray-100 transition-colors select-none font-bold text-base"
+                            aria-label={`Increase quantity of ${product.name}`}
                           >
-                            <Eye className="w-3.5 h-3.5" />
-                            <span>Details</span>
-                          </Link>
+                            <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
+                          </button>
                         </div>
+                      </td>
+
+                      {/* TOTAL (₹) matching reference screenshot */}
+                      <td className="py-3.5 px-5 text-right whitespace-nowrap">
+                        <span
+                          className={`font-black font-sans text-sm sm:text-base ${
+                            currentQty > 0 ? 'text-[#9A3412]' : 'text-gray-300'
+                          }`}
+                        >
+                          ₹{itemTotal.toLocaleString('en-IN')}
+                        </span>
                       </td>
                     </tr>
                   );
@@ -370,6 +422,96 @@ const PopularProductsTable = () => {
             >
               Next
             </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Bottom Bar (Triggered automatically when totalItemsCount > 0) */}
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out transform ${
+          totalItemsCount > 0 ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="bg-white/95 backdrop-blur-md border-t-2 border-[#7A1518] shadow-[0_-8px_30px_rgba(0,0,0,0.18)]">
+          <div className="max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 py-3 sm:py-3.5 flex flex-col sm:flex-row items-center justify-between gap-3">
+            {/* Left: Cart items count & Total Amount Calculation */}
+            <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto justify-between sm:justify-start">
+              <div className="flex items-center gap-3">
+                <div className="relative p-2.5 bg-[#FAF6F0] border border-[#EAE3D6] rounded-xl text-[#7A1518] shrink-0">
+                  <ShoppingBag className="w-5 h-5" />
+                  <span className="absolute -top-1.5 -right-1.5 bg-[#7A1518] text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-xs">
+                    {totalItemsCount}
+                  </span>
+                </div>
+
+                <div>
+                  <div className="flex items-baseline gap-2 flex-wrap">
+                    <span className="text-[11px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
+                      Total ({cartItems.length} {cartItems.length === 1 ? 'item' : 'items'}):
+                    </span>
+                    <span className="text-xl sm:text-2xl font-black text-[#7A1518] font-sans">
+                      ₹{subtotal.toLocaleString('en-IN')}
+                    </span>
+                    {totalSavings > 0 && (
+                      <span className="hidden md:inline-flex text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                        Save ₹{totalSavings.toLocaleString('en-IN')}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="text-[11px] mt-0.5">
+                    {subtotal >= minOrderAmount ? (
+                      <span className="text-emerald-700 font-bold flex items-center gap-1">
+                        <span>✓</span> Minimum order ₹{minOrderAmount.toLocaleString('en-IN')} qualified!
+                      </span>
+                    ) : (
+                      <span className="text-amber-800 font-semibold">
+                        Min order ₹{minOrderAmount.toLocaleString('en-IN')} (Add ₹{(minOrderAmount - subtotal).toLocaleString('en-IN')} more)
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile Clear Button */}
+              <button
+                onClick={clearCart}
+                className="sm:hidden text-gray-400 hover:text-red-600 p-2 text-xs font-bold"
+                title="Clear Cart"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Right: Actions */}
+            <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-end">
+              <button
+                onClick={clearCart}
+                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-gray-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors border border-gray-200"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Clear All</span>
+              </button>
+
+              <a
+                href={`https://wa.me/918098443633?text=${encodeURIComponent(
+                  `Hello PON MURUGAN Fireworks, I selected ${totalItemsCount} items (${cartItems.length} varieties) worth ₹${subtotal.toLocaleString('en-IN')}. Please share wholesale confirmation and transport details!`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold text-xs transition-colors"
+              >
+                <span>WhatsApp Estimate</span>
+              </a>
+
+              <Link
+                to="/cart"
+                className="flex-1 sm:flex-initial bg-[#7A1518] hover:bg-[#8F1A1E] text-white px-5 sm:px-7 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-all active:scale-95 whitespace-nowrap"
+              >
+                <span>View Cart & Order</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { MessageCircle, X } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 const WhatsAppButton = () => {
   const [showTooltip, setShowTooltip] = useState(false);
+  const { totalItemsCount } = useCart();
   const phoneNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '918098443633';
   
   const defaultMessage = encodeURIComponent(
@@ -12,7 +14,7 @@ const WhatsAppButton = () => {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end">
+    <div className={`fixed ${totalItemsCount > 0 ? 'bottom-24 sm:bottom-22' : 'bottom-6'} right-4 sm:right-6 z-40 flex flex-col items-end transition-all duration-300`}>
       {/* Interactive Tooltip Card */}
       {showTooltip && (
         <div className="mb-3 p-3.5 rounded-2xl bg-[#151515] border border-[#F5C45A]/30 shadow-2xl text-xs max-w-xs text-white backdrop-blur-md relative animate-in fade-in slide-in-from-bottom-2">
