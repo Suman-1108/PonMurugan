@@ -238,7 +238,7 @@ const Home = () => {
       <PopularProductsTable />
 
       {/* Why Choose Pon Murugan & Make Every Celebration Memorable Sections */}
-      <section className="py-16 sm:py-24 bg-[#FAF8F5] border-b border-[#EBE4D8]">
+      <section className="pt-0 pb-16 sm:pb-24 bg-[#FAF8F5] border-b border-[#EBE4D8]">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-12 sm:mb-14">
