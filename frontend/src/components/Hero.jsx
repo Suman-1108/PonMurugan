@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, Phone, Sparkles } from 'lucide-react';
 import heroBannerImg from '../assets/images/hero_banner_full.jpg';
+import heroBannerMobileImg from '../assets/images/hero_banner_mobile.jpg';
 
 const Hero = () => {
   const quickCategories = [
@@ -33,14 +34,53 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden pt-32 sm:pt-36 bg-[#F8F9FA]">
+    <section className="relative overflow-hidden pt-28 sm:pt-32 bg-[#F8F9FA]">
       {/* Screen Reader SEO Heading */}
       <h1 className="sr-only">
         PON MURUGAN – Celebrate Every Moment With Brilliance. Sivakasi Premium Fireworks & Crackers
       </h1>
 
-      {/* Main Full-Size Cinematic Panoramic Banner (Exact 3:1 Aspect Ratio) */}
-      <div className="relative w-full aspect-[3/1] select-none overflow-hidden bg-[#0A0B10] shadow-xl">
+      {/* 1. Mobile Portrait Banner (Visible on mobile screens < 640px, Aspect 3:4) */}
+      <div className="relative w-full aspect-[3/4] select-none overflow-hidden bg-[#0A0B10] shadow-xl block sm:hidden">
+        <img
+          src={heroBannerMobileImg}
+          alt="PON MURUGAN Fireworks Mobile Banner"
+          className="w-full h-full object-cover object-center block"
+          loading="eager"
+          decoding="async"
+          onError={(e) => {
+            e.target.src = '/assets/hero_banner_mobile.jpg';
+          }}
+        />
+
+        {/* Interactive Clickable Hotspots for Mobile Vertical Stacked Buttons */}
+        <div className="absolute inset-0 z-10 pointer-events-none">
+          <div className="relative w-full h-full">
+            {/* "Explore Our Products" Button Hotspot (Mobile) */}
+            <Link
+              to="/products"
+              title="Explore Our Products"
+              aria-label="Explore Our Products"
+              className="pointer-events-auto absolute left-[22%] top-[58.5%] w-[56%] h-[6.2%] rounded-full cursor-pointer active:scale-95 transition-all"
+            >
+              <span className="sr-only">Explore Our Products</span>
+            </Link>
+
+            {/* "Contact Us" Button Hotspot (Mobile) */}
+            <Link
+              to="/contact"
+              title="Contact Us"
+              aria-label="Contact Us"
+              className="pointer-events-auto absolute left-[22%] top-[65.5%] w-[56%] h-[6.2%] rounded-full cursor-pointer active:scale-95 transition-all"
+            >
+              <span className="sr-only">Contact Us</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. Desktop Widescreen Banner (Visible on screens >= 640px, Aspect 3:1) */}
+      <div className="relative w-full aspect-[3/1] select-none overflow-hidden bg-[#0A0B10] shadow-xl hidden sm:block">
         {/* Pristine High-Resolution Banner Artwork with Complete Built-in Typography & Logo */}
         <img
           src={heroBannerImg}
