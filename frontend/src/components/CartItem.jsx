@@ -1,34 +1,29 @@
 import React from 'react';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import { Link } from 'react-router-dom';
 
 const CartItem = ({ item }) => {
   const { updateQuantity, removeFromCart } = useCart();
 
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-gray-200 hover:border-[#D81C28]/40 shadow-xs hover:shadow-md transition-all">
-      {/* Product Image & Info */}
-      <div className="flex items-center gap-4 w-full sm:w-auto">
-        <div className="shrink-0">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl border border-gray-200"
-          />
+    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-[#EAE3D6] hover:border-[#7A1518]/30 shadow-xs hover:shadow-md transition-all">
+      {/* Product Info (Completely image-free as requested) */}
+      <div className="flex items-center gap-3.5 w-full sm:w-auto">
+        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#FAF6F0] border border-[#EAE3D6] text-[#7A1518] font-mono font-bold flex items-center justify-center shrink-0 text-xs shadow-2xs">
+          #{item.no || '•'}
         </div>
         <div className="flex flex-col">
-          <span className="text-[11px] font-bold text-[#D81C28] uppercase tracking-wider">
+          <span className="text-[10px] sm:text-[11px] font-bold text-[#C29B38] uppercase tracking-wider">
             {item.categoryName}
           </span>
-          <span className="font-sans text-sm sm:text-base font-bold text-gray-900">
+          <span className="font-serif text-sm sm:text-base font-bold text-gray-900">
             {item.name}
           </span>
-          <span className="text-xs text-gray-500 mt-0.5">
+          <span className="text-xs text-gray-500 font-mono mt-0.5">
             Pack: {item.packSize}
           </span>
           <div className="flex items-center gap-2 mt-1 sm:hidden">
-            <span className="text-sm font-bold text-[#D81C28]">₹{item.price}</span>
+            <span className="text-sm font-bold text-[#7A1518]">₹{item.price}</span>
             <span className="text-xs text-gray-400 line-through">MRP ₹{item.mrp}</span>
           </div>
         </div>
@@ -43,33 +38,33 @@ const CartItem = ({ item }) => {
         </div>
       </div>
 
-      {/* Quantity Selector */}
+      {/* Quantity Stepper Selector & Row Total */}
       <div className="flex items-center justify-between w-full sm:w-auto gap-4">
-        <div className="flex items-center rounded-xl bg-gray-100 border border-gray-200 p-1">
+        <div className="inline-flex items-center border border-[#CFD8DC] rounded-lg bg-white overflow-hidden shadow-2xs hover:border-[#7A1518]/50 focus-within:border-[#7A1518]">
           <button
             onClick={() => updateQuantity(item.id, item.quantity - 1)}
-            aria-label="Decrease quantity"
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-600 hover:text-black hover:bg-white transition-colors"
+            aria-label={`Decrease quantity of ${item.name}`}
+            className="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-[#7A1518] hover:bg-gray-100 transition-colors select-none font-bold text-sm"
           >
-            <Minus className="w-3.5 h-3.5" />
+            <Minus className="w-3.5 h-3.5 stroke-[2.5]" />
           </button>
-          <span className="w-10 text-center font-bold text-sm text-gray-900">
+          <span className="w-10 h-8 flex items-center justify-center text-center font-bold text-sm text-gray-900 font-sans border-x border-[#EAE3D6] bg-transparent">
             {item.quantity}
           </span>
           <button
             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-            aria-label="Increase quantity"
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-600 hover:text-black hover:bg-white transition-colors"
+            aria-label={`Increase quantity of ${item.name}`}
+            className="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-[#7A1518] hover:bg-gray-100 transition-colors select-none font-bold text-sm"
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
           </button>
         </div>
 
         {/* Item Total */}
-        <div className="flex flex-col items-end min-w-[70px]">
-          <span className="text-xs text-gray-500 sm:hidden">Subtotal</span>
-          <span className="font-sans text-base font-bold text-[#D81C28]">
-            ₹{item.price * item.quantity}
+        <div className="flex flex-col items-end min-w-[80px]">
+          <span className="text-[10px] text-gray-400 uppercase sm:hidden">Total</span>
+          <span className="font-sans text-base font-black text-[#9A3412]">
+            ₹{(item.price * item.quantity).toLocaleString('en-IN')}
           </span>
         </div>
 
@@ -77,7 +72,8 @@ const CartItem = ({ item }) => {
         <button
           onClick={() => removeFromCart(item.id)}
           aria-label={`Remove ${item.name}`}
-          className="p-2 text-gray-400 hover:text-[#D81C28] hover:bg-red-50 rounded-lg transition-colors"
+          className="p-2 text-gray-400 hover:text-[#7A1518] hover:bg-red-50 rounded-lg transition-colors"
+          title="Remove item"
         >
           <Trash2 className="w-4 h-4" />
         </button>
@@ -87,4 +83,3 @@ const CartItem = ({ item }) => {
 };
 
 export default CartItem;
-

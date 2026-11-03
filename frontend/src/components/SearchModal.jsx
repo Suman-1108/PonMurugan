@@ -111,11 +111,9 @@ const SearchModal = ({ isOpen, onClose }) => {
                     className="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 border border-transparent hover:border-[#F5C45A]/20 transition-all group"
                   >
                     <div className="flex items-center gap-3">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-12 h-12 object-cover rounded-lg border border-white/10"
-                      />
+                      <div className="w-10 h-10 rounded-lg bg-white/10 text-[#F5C45A] font-mono font-bold flex items-center justify-center text-xs shrink-0 border border-white/15">
+                        #{product.no || '•'}
+                      </div>
                       <div>
                         <h4 className="font-sans text-sm font-bold text-white group-hover:text-[#F5C45A] transition-colors">
                           {product.name}
