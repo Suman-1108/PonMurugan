@@ -29,6 +29,74 @@ import {
 const Home = () => {
   const featuredProducts = getFeaturedProducts();
 
+  // Curated collections catalog matching exact design
+  const curatedCollections = [
+    {
+      title: 'Sparklers',
+      slug: 'sparklers',
+      variety: '14 Varieties',
+      badge: 'TRADITIONAL LIGHTS',
+      description: 'Handheld shimmering gold, silver, and multicolor sparklers for peaceful family celebrations.',
+      image: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      title: 'Flower Pots',
+      slug: 'flower-pots',
+      variety: '18 Varieties',
+      badge: 'FOUNTAIN OF SPARKS',
+      description: 'Majestic fountain showers rising up to 25 feet with sparkling golden and emerald stars.',
+      image: 'https://images.unsplash.com/photo-1498931299472-f7a63a5a1cfa?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      title: 'Ground Chakkars',
+      slug: 'ground-chakkars',
+      variety: '10 Varieties',
+      badge: 'SPINNING WHEELS',
+      description: 'Mesmerizing swirling discs emitting vivid circular rings of golden and multi-colored fire.',
+      image: 'https://images.unsplash.com/photo-1531747056595-07f6cbbe10ad?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      title: 'Rockets',
+      slug: 'rockets',
+      variety: '12 Varieties',
+      badge: 'CELESTIAL ASCENTS',
+      description: 'High-altitude whistling rockets bursting into expansive starry weeping willow and brocade crowns.',
+      image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      title: 'Fancy Fireworks',
+      slug: 'aerial-shots',
+      variety: '24 Varieties',
+      badge: 'AERIAL MULTI-SHOTS',
+      description: 'Multi-stage choreographed repeaters delivering synchronized sky bursts of royal purple, gold, and red.',
+      image: '/assets/pon_murugan_hero.jpg'
+    },
+    {
+      title: 'Bijili Crackers',
+      slug: 'sound-crackers',
+      variety: '8 Varieties',
+      badge: 'FESTIVE SOUNDS',
+      description: 'Crisp rhythmic sound crackers crafted to awaken festive cheer and auspicious celebration spirits.',
+      image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      title: 'Gift Boxes',
+      slug: 'gift-boxes',
+      variety: '8 Curations',
+      badge: 'HERITAGE ASSORTMENTS',
+      description: 'Handcrafted luxury hamper assortments packaged in regal gold-embossed celebration boxes.',
+      image: 'https://images.unsplash.com/photo-1513297887119-d46091b24bfa?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      title: 'Celebration Combos',
+      slug: 'all',
+      variety: '5 Combos',
+      badge: 'COMPLETE FAMILY PACKS',
+      description: 'Curated all-in-one celebration bundles with sparklers, pots, chakkars, and fancy sky shots.',
+      image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80'
+    }
+  ];
+
   // Enquiry form state
   const [formData, setFormData] = useState({
     name: '',
@@ -82,6 +150,75 @@ const Home = () => {
     <div className="bg-[#F8F9FA] min-h-screen text-gray-900">
       {/* Hero Section (Full-Width Cinematic Banner) */}
       <Hero />
+
+      {/* Curated Catalog - Explore Our Collections Section */}
+      <section className="py-14 sm:py-20 bg-[#FAF8F5] border-b border-[#EBE4D8]">
+        <div className="w-full max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16">
+          {/* Section Header */}
+          <div className="text-center mb-10 sm:mb-12">
+            <span className="text-[11px] sm:text-xs font-bold tracking-[0.28em] text-[#C29B38] uppercase block mb-1.5">
+              CURATED CATALOG
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#7A1518] tracking-tight">
+              Explore Our Collections
+            </h2>
+            <div className="w-12 h-0.5 bg-[#C29B38] mx-auto my-3"></div>
+            <p className="text-xs sm:text-sm text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
+              Discover time-tested traditional crackers and cutting-edge aerial pyrotechnics suited for weddings, Diwali, and festive milestones.
+            </p>
+          </div>
+
+          {/* 8-Card Collections Grid (4 columns desktop, 2 columns mobile/tablet) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+            {curatedCollections.map((item) => (
+              <Link
+                key={item.title}
+                to={`/products?category=${item.slug}`}
+                className="group bg-white rounded-xl overflow-hidden border border-[#EBE4D8] hover:border-[#7A1518]/30 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col"
+              >
+                {/* Image Banner Area */}
+                <div className="relative aspect-[16/10] overflow-hidden bg-gray-900 select-none">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+
+                  {/* Top Right Variety Pill */}
+                  <span className="absolute top-2.5 right-2.5 bg-white/95 backdrop-blur-xs text-gray-800 text-[10px] font-extrabold px-2 py-0.5 rounded shadow-xs">
+                    {item.variety}
+                  </span>
+
+                  {/* Bottom Left Category Tag */}
+                  <span className="absolute bottom-2.5 left-2.5 text-white/95 text-[9px] font-black tracking-wider uppercase bg-black/60 backdrop-blur-xs px-2 py-0.5 rounded border border-white/20">
+                    {item.badge}
+                  </span>
+                </div>
+
+                {/* Card Info Area */}
+                <div className="p-4 sm:p-5 flex flex-col justify-between flex-grow">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-serif font-extrabold text-[#7A1518] group-hover:text-[#A81D24] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-gray-600 leading-relaxed mt-1.5 line-clamp-2">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  {/* Action Link */}
+                  <div className="pt-3 mt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-extrabold tracking-wider text-[#C29B38] group-hover:text-[#7A1518] transition-colors uppercase">
+                    <span>EXPLORE COLLECTION</span>
+                    <span className="text-base font-bold transition-transform group-hover:translate-x-1">→</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Top Rated Products Section (Clean White Theme) */}
       <section className="py-16 w-full max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16">
