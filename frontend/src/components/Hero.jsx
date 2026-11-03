@@ -101,7 +101,7 @@ const Hero = () => {
               to="/products"
               title="Explore Our Products"
               aria-label="Explore Our Products"
-              className="pointer-events-auto absolute left-[53.4%] top-[60.5%] w-[14.2%] h-[7.8%] rounded-full cursor-pointer hover:shadow-[0_0_25px_rgba(245,196,90,0.8)] hover:brightness-110 active:scale-95 transition-all duration-200"
+              className="pointer-events-auto absolute left-[46.5%] top-[60.5%] w-[14%] h-[8.2%] rounded-full cursor-pointer hover:shadow-[0_0_25px_rgba(245,196,90,0.8)] hover:brightness-110 active:scale-95 transition-all duration-200"
             >
               <span className="sr-only">Explore Our Products</span>
             </Link>
@@ -111,7 +111,7 @@ const Hero = () => {
               to="/contact"
               title="Contact Us"
               aria-label="Contact Us"
-              className="pointer-events-auto absolute left-[69.3%] top-[60.5%] w-[10.5%] h-[7.8%] rounded-full cursor-pointer hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] hover:brightness-125 active:scale-95 transition-all duration-200"
+              className="pointer-events-auto absolute left-[62.2%] top-[60.5%] w-[10.8%] h-[8.2%] rounded-full cursor-pointer hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] hover:brightness-125 active:scale-95 transition-all duration-200"
             >
               <span className="sr-only">Contact Us</span>
             </Link>
