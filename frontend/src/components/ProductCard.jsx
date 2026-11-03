@@ -42,12 +42,9 @@ const ProductCard = ({ product, viewMode = 'card', index = 1 }) => {
         </td>
 
         <td className="py-4 px-5">
-          <Link
-            to={`/products/${product.id}`}
-            className="font-serif font-bold text-gray-900 group-hover:text-[#7A1518] text-sm sm:text-base leading-snug transition-colors block"
-          >
+          <span className="font-serif font-bold text-gray-900 text-sm sm:text-base leading-snug block">
             {product.name}
-          </Link>
+          </span>
           <div className="flex items-center gap-2 mt-1.5 flex-wrap">
             <span className="bg-[#E8F5E9] text-[#2E7D32] border border-[#C8E6C9] text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">
               IN STOCK
@@ -155,11 +152,11 @@ const ProductCard = ({ product, viewMode = 'card', index = 1 }) => {
         </div>
 
         {/* Cracker Name */}
-        <Link to={`/products/${product.id}`} className="block group-hover:text-[#7A1518] transition-colors">
+        <div className="block">
           <h3 className="text-base sm:text-lg font-serif font-black text-gray-900 leading-snug line-clamp-2 min-h-[2.75rem]">
             {product.name}
           </h3>
-        </Link>
+        </div>
 
         {/* Packing / Unit Information */}
         <div className="mt-2.5 p-2.5 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-between text-xs text-gray-600">

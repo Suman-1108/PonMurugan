@@ -10,23 +10,20 @@ const CartItem = ({ item }) => {
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-gray-200 hover:border-[#D81C28]/40 shadow-xs hover:shadow-md transition-all">
       {/* Product Image & Info */}
       <div className="flex items-center gap-4 w-full sm:w-auto">
-        <Link to={`/products/${item.id}`} className="shrink-0">
+        <div className="shrink-0">
           <img
             src={item.image}
             alt={item.name}
             className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl border border-gray-200"
           />
-        </Link>
+        </div>
         <div className="flex flex-col">
           <span className="text-[11px] font-bold text-[#D81C28] uppercase tracking-wider">
             {item.categoryName}
           </span>
-          <Link
-            to={`/products/${item.id}`}
-            className="font-sans text-sm sm:text-base font-bold text-gray-900 hover:text-[#D81C28] transition-colors"
-          >
+          <span className="font-sans text-sm sm:text-base font-bold text-gray-900">
             {item.name}
-          </Link>
+          </span>
           <span className="text-xs text-gray-500 mt-0.5">
             Pack: {item.packSize}
           </span>

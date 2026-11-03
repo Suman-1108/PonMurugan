@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { products } from '../data/products';
 import { categories } from '../data/categories';
 import { useCart } from '../context/CartContext';
@@ -9,10 +9,7 @@ import {
   Sparkles,
   Minus,
   Plus,
-  Eye,
-  X,
-  ChevronLeft,
-  ChevronRight
+  X
 } from 'lucide-react';
 
 const Products = () => {
@@ -308,13 +305,9 @@ const Products = () => {
 
                         {/* Product Name with IN STOCK & Festive Choice */}
                         <td className="py-4 px-5">
-                          <Link
-                            to={`/products/${product.id}`}
-                            className="font-serif font-bold text-gray-900 group-hover:text-[#7A1518] text-sm sm:text-base leading-snug transition-colors inline-flex items-center gap-1.5"
-                          >
-                            <span>{product.name}</span>
-                            <Eye className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#7A1518] shrink-0 transition-colors" title="View details" />
-                          </Link>
+                          <span className="font-serif font-bold text-gray-900 text-sm sm:text-base leading-snug block">
+                            {product.name}
+                          </span>
                           <div className="flex items-center gap-2 mt-1.5 flex-wrap">
                             <span className="bg-[#E8F5E9] text-[#2E7D32] border border-[#C8E6C9] text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">
                               IN STOCK

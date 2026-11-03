@@ -112,3 +112,4 @@ const FloatingOrderBar = () => {
 };
 
 export default FloatingOrderBar;
+

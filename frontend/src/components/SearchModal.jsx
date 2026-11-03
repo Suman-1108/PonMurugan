@@ -106,7 +106,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                 filtered.map(product => (
                   <Link
                     key={product.id}
-                    to={`/products/${product.id}`}
+                    to={`/products?category=${product.category}`}
                     onClick={onClose}
                     className="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 border border-transparent hover:border-[#F5C45A]/20 transition-all group"
                   >
