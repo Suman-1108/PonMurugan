@@ -277,11 +277,11 @@ const Home = () => {
           <p className="max-w-2xl text-base sm:text-lg text-amber-100/90 mb-8 leading-relaxed">
             Light up birthdays, temple anniversaries, weddings, and Diwali with our signature gift hampers and sky showstoppers. Direct from Sivakasi factory.
           </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <Link to="/products" className="px-9 py-4 rounded-full bg-gradient-to-r from-[#FDE396] via-[#F5C45A] to-[#D49A26] text-black font-extrabold text-base shadow-2xl hover:scale-105 transition-transform">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link to="/products" className="px-8 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-[#FDE396] via-[#F5C45A] to-[#D49A26] text-black font-extrabold text-sm sm:text-base shadow-xl hover:scale-105 transition-transform inline-flex items-center justify-center min-w-[210px]">
               Explore Products
             </Link>
-            <Link to="/wholesale" className="px-8 py-4 rounded-full bg-black/50 hover:bg-black/70 text-white text-base font-bold border border-white/30 backdrop-blur-xs transition-all">
+            <Link to="/wholesale" className="px-8 py-3.5 sm:py-4 rounded-full bg-black/50 hover:bg-black/70 text-white font-bold text-sm sm:text-base border border-white/30 backdrop-blur-xs transition-all inline-flex items-center justify-center min-w-[210px]">
               Wholesale Bulk Discount
             </Link>
           </div>
