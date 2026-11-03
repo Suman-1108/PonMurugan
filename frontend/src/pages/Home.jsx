@@ -24,7 +24,11 @@ import {
   Layers,
   ShoppingBag,
   Gem,
-  Award
+  Award,
+  Smile,
+  Store,
+  Headphones,
+  Download
 } from 'lucide-react';
 
 import sparklersImg from '../assets/categories/sparkelers.png';
@@ -233,178 +237,126 @@ const Home = () => {
       {/* Discover Our Popular Products - Table Format (Image-Free List View as requested) */}
       <PopularProductsTable />
 
-      {/* 5-Item Value Proposition Features Bar (Clean White Background) */}
-      <section className="py-8 bg-white border-y border-gray-200 shadow-xs">
-        <div className="w-full max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-4">
-            {/* Feature 1 */}
-            <div className="flex items-start gap-3">
-              <div className="p-2.5 rounded-xl bg-red-50 text-[#D81C28] shrink-0 border border-red-100">
-                <Gem className="w-5 h-5" />
+      {/* Why Choose Pon Murugan & Make Every Celebration Memorable Sections */}
+      <section className="py-16 sm:py-24 bg-[#FAF8F5] border-b border-[#EBE4D8]">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-12 sm:mb-14">
+            <span className="text-[11px] sm:text-xs font-bold tracking-[0.28em] text-[#C29B38] uppercase block mb-1.5">
+              OUR UNCOMPROMISING STANDARD
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#7A1518] tracking-tight">
+              Why Choose Pon Murugan
+            </h2>
+            <div className="w-12 h-0.5 bg-[#C29B38] mx-auto my-3"></div>
+          </div>
+
+          {/* 4 Feature Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Card 1: Quality Commitment */}
+            <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#EAE3D6] shadow-xs flex flex-col justify-start hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 rounded-lg bg-[#FAF3E7] border border-[#EBE0CC] flex items-center justify-center text-[#B68B35] mb-5 shrink-0">
+                <Award className="w-5 h-5" />
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-extrabold text-gray-900">Premium UI</h4>
-                <p className="text-[11px] text-gray-500 leading-snug mt-0.5">
-                  Modern, bold, and immersive design language
-                </p>
-              </div>
+              <h3 className="font-serif text-lg font-bold text-[#7A1518] mb-2">
+                Quality Commitment
+              </h3>
+              <p className="text-xs sm:text-[13px] text-gray-600 leading-relaxed">
+                100% genuine Sivakasi fireworks adhering to government safety specifications and highest pyrotechnic purity.
+              </p>
             </div>
 
-            {/* Feature 2 */}
-            <div className="flex items-start gap-3">
-              <div className="p-2.5 rounded-xl bg-red-50 text-[#D81C28] shrink-0 border border-red-100">
-                <Smartphone className="w-5 h-5" />
+            {/* Card 2: Customer Satisfaction */}
+            <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#EAE3D6] shadow-xs flex flex-col justify-start hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 rounded-lg bg-[#FAF3E7] border border-[#EBE0CC] flex items-center justify-center text-[#B68B35] mb-5 shrink-0">
+                <Smile className="w-5 h-5" />
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-extrabold text-gray-900">Responsive Design</h4>
-                <p className="text-[11px] text-gray-500 leading-snug mt-0.5">
-                  Seamless experience across desktop, tablet &amp; mobile
-                </p>
-              </div>
+              <h3 className="font-serif text-lg font-bold text-[#7A1518] mb-2">
+                Customer Satisfaction
+              </h3>
+              <p className="text-xs sm:text-[13px] text-gray-600 leading-relaxed">
+                Trusted by over 50,000 households and event planners for reliable ignition, brilliant color, and festive joy.
+              </p>
             </div>
 
-            {/* Feature 3 */}
-            <div className="flex items-start gap-3">
-              <div className="p-2.5 rounded-xl bg-red-50 text-[#D81C28] shrink-0 border border-red-100">
-                <ShoppingBag className="w-5 h-5" />
+            {/* Card 3: Retail & Wholesale */}
+            <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#EAE3D6] shadow-xs flex flex-col justify-start hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 rounded-lg bg-[#FAF3E7] border border-[#EBE0CC] flex items-center justify-center text-[#B68B35] mb-5 shrink-0">
+                <Store className="w-5 h-5" />
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-extrabold text-gray-900">Product Catalog</h4>
-                <p className="text-[11px] text-gray-500 leading-snug mt-0.5">
-                  Organized listings with filters, search &amp; smart discovery
-                </p>
-              </div>
+              <h3 className="font-serif text-lg font-bold text-[#7A1518] mb-2">
+                Retail &amp; Wholesale
+              </h3>
+              <p className="text-xs sm:text-[13px] text-gray-600 leading-relaxed">
+                Direct factory wholesale pricing for bulk festival bookings alongside premium family retail packs.
+              </p>
             </div>
 
-            {/* Feature 4 */}
-            <div className="flex items-start gap-3">
-              <div className="p-2.5 rounded-xl bg-red-50 text-[#D81C28] shrink-0 border border-red-100">
-                <Sparkles className="w-5 h-5" />
+            {/* Card 4: Customer Support */}
+            <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#EAE3D6] shadow-xs flex flex-col justify-start hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 rounded-lg bg-[#FAF3E7] border border-[#EBE0CC] flex items-center justify-center text-[#B68B35] mb-5 shrink-0">
+                <Headphones className="w-5 h-5" />
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-extrabold text-gray-900">Service Pages</h4>
-                <p className="text-[11px] text-gray-500 leading-snug mt-0.5">
-                  Professional displays with trust and expertise at the core
-                </p>
-              </div>
-            </div>
-
-            {/* Feature 5 */}
-            <div className="flex items-start gap-3 col-span-2 sm:col-span-1">
-              <div className="p-2.5 rounded-xl bg-red-50 text-[#D81C28] shrink-0 border border-red-100">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-extrabold text-gray-900">Checkout Ready</h4>
-                <p className="text-[11px] text-gray-500 leading-snug mt-0.5">
-                  Conversion-focused flow for a smooth shopping experience
-                </p>
-              </div>
+              <h3 className="font-serif text-lg font-bold text-[#7A1518] mb-2">
+                Customer Support
+              </h3>
+              <p className="text-xs sm:text-[13px] text-gray-600 leading-relaxed">
+                Dedicated WhatsApp support, order tracking, and expert safety guidance for every celebration.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Brand Introduction Section (White Theme) */}
-      <section className="relative py-20 bg-[#F8F9FA] border-b border-gray-200">
-        <div className="w-full max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Visual Brand Showcase with Finalized Logo */}
-            <div className="lg:col-span-5 relative flex justify-center">
-              <div className="relative w-72 sm:w-88 aspect-square rounded-3xl overflow-hidden border-2 border-amber-300 shadow-xl bg-black p-3">
-                <img
-                  src="/assets/pon_murugan_logo.png"
-                  alt="Pon Murugan Fireworks Brand Identity"
-                  className="w-full h-full object-contain rounded-2xl"
-                  onError={(e) => {
-                    e.target.src = '/assets/pon_murugan_logo.jpg';
-                  }}
-                />
-              </div>
-            </div>
+          {/* Make Every Celebration Memorable Banner Card */}
+          <div className="mt-14 sm:mt-20 bg-white rounded-2xl sm:rounded-3xl border border-[#EAE3D6] shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch">
+            {/* Left Column: Text & CTAs */}
+            <div className="lg:col-span-6 p-8 sm:p-12 lg:p-14 flex flex-col justify-center">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF3E7] border border-[#E8DEC9] text-[#9A7228] text-[11px] font-bold uppercase tracking-wider mb-5 w-fit">
+                <Sparkles className="w-3.5 h-3.5 text-[#C29B38]" />
+                DIWALI &amp; FESTIVAL SEASON 2026
+              </span>
 
-            {/* Narrative Content */}
-            <div className="lg:col-span-7 flex flex-col">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-[#D81C28] text-xs font-bold uppercase tracking-wider mb-4 w-fit">
-                <Flame className="w-3.5 h-3.5 text-[#D81C28]" />
-                Direct From Sivakasi, Tamil Nadu
-              </div>
+              <h3 className="font-serif text-3xl sm:text-4xl lg:text-[40px] font-black text-[#7A1518] leading-[1.18] mb-4">
+                Make Every Celebration<br className="hidden sm:inline" /> Memorable
+              </h3>
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-5 font-sans">
-                The Celebration Begins With <span className="text-[#D81C28]">Pon</span> <span className="text-[#D49A26]">Murugan</span>
-              </h2>
+              <div className="w-12 h-0.5 bg-[#C29B38] mb-6"></div>
 
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-6">
-                Born with deep reverence for Sivakasi’s illustrious fireworks legacy and inspired by the victorious radiance of Lord Murugan, <strong className="text-gray-900 font-extrabold">PON MURUGAN</strong> stands as an emblem of festive grandeur, unmatched purity of sparks, and safety assurance.
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-8 max-w-md">
+                From intimate home Diwali gatherings to grand temple festivals and wedding receptions, Pon Murugan fireworks transform your milestones into dazzling celestial memories.
               </p>
-
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-8">
-                Whether illuminating family courtyards during Diwali, lighting up temple festivities, or orchestrating mega 240-shot grand sky finales for royal weddings, we bridge direct Sivakasi factory manufacturing with nationwide retail and wholesale availability.
-              </p>
-
-              {/* Pillars */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                <div className="flex items-start gap-3 p-4 rounded-xl bg-white border border-gray-200 shadow-xs">
-                  <CheckCircle2 className="w-5 h-5 text-[#16A34A] shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-gray-900">PESO Certified Green Formulations</h4>
-                    <p className="text-xs text-gray-600 mt-0.5">Reduced particulate emission &amp; eco-compliant chemistry.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 p-4 rounded-xl bg-white border border-gray-200 shadow-xs">
-                  <CheckCircle2 className="w-5 h-5 text-[#D49A26] shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-gray-900">Genuine Factory Wholesale Rates</h4>
-                    <p className="text-xs text-gray-600 mt-0.5">Huge festive savings direct from manufacturer without middleman markups.</p>
-                  </div>
-                </div>
-              </div>
 
               <div className="flex flex-wrap items-center gap-4">
-                <Link to="/about" className="btn-red px-6 py-3 rounded-xl text-sm font-bold inline-flex items-center gap-2 shadow-md">
-                  <span>Our Heritage &amp; Safety</span>
+                <Link
+                  to="/products"
+                  className="px-6 sm:px-7 py-3 rounded-lg bg-[#7A1518] hover:bg-[#8F1A1E] text-white font-bold text-xs sm:text-sm inline-flex items-center gap-2 shadow-sm transition-all active:scale-95"
+                >
+                  <span>Explore Collections</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link to="/wholesale" className="px-6 py-3 rounded-xl bg-white hover:bg-gray-50 text-gray-800 text-sm font-bold border border-gray-300 shadow-xs transition-colors">
-                  Wholesale Price List
+
+                <Link
+                  to="/wholesale"
+                  className="px-6 sm:px-7 py-3 rounded-lg bg-white hover:bg-[#FAF6F0] text-[#7A1518] border border-[#C29B38] font-bold text-xs sm:text-sm inline-flex items-center gap-2 shadow-2xs hover:border-[#7A1518] transition-all"
+                >
+                  <span>Download Price List</span>
+                  <Download className="w-4 h-4 text-[#C29B38]" />
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Promotional Banner (Festive Crimson & Gold with Doodle Background Pattern) */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-r from-[#7B0D14] via-[#8B1018] to-[#6A080F] text-white shadow-xl">
-        {/* Seamless Doodle Background Pattern Layer */}
-        <div
-          className="absolute inset-0 opacity-15 mix-blend-multiply bg-repeat pointer-events-none"
-          style={{
-            backgroundImage: "url('/assets/pattern_bg.jpg')",
-            backgroundSize: "360px auto"
-          }}
-        />
-        {/* Soft Radial Glow for Brilliance */}
-        <div className="absolute inset-0 bg-radial from-amber-400/10 via-transparent to-black/20 pointer-events-none" />
-
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
-          <span className="px-4 py-1.5 rounded-full bg-black/40 border border-amber-300/40 text-[#FFE082] text-xs font-bold tracking-widest uppercase mb-4 shadow-md backdrop-blur-xs">
-            Diwali &amp; Wedding Celebration Special
-          </span>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white mb-6 drop-shadow-md font-sans">
-            Make Every Celebration <span className="text-[#FFE082]">Special</span>
-          </h2>
-          <p className="max-w-2xl text-base sm:text-lg text-amber-100/90 mb-8 leading-relaxed">
-            Light up birthdays, temple anniversaries, weddings, and Diwali with our signature gift hampers and sky showstoppers. Direct from Sivakasi factory.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <Link to="/products" className="px-9 py-4 rounded-full bg-gradient-to-r from-[#FDE396] via-[#F5C45A] to-[#D49A26] text-black font-extrabold text-base shadow-2xl hover:scale-105 transition-transform">
-              Explore Products
-            </Link>
-            <Link to="/wholesale" className="px-8 py-4 rounded-full bg-black/50 hover:bg-black/70 text-white text-base font-bold border border-white/30 backdrop-blur-xs transition-all">
-              Wholesale Bulk Discount
-            </Link>
+            {/* Right Column: Festive Celebration Photo with smooth left gradient blend */}
+            <div className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] lg:min-h-full overflow-hidden bg-gray-100">
+              <img
+                src="https://images.unsplash.com/photo-1517457041081-f7b73500a210?auto=format&fit=crop&w=1200&q=80"
+                alt="Festive celebration gathering under ambient lights"
+                className="w-full h-full object-cover object-center"
+                loading="lazy"
+              />
+              {/* Desktop fade from white into photo */}
+              <div className="absolute inset-y-0 left-0 w-28 sm:w-40 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none hidden lg:block" />
+              {/* Mobile fade from white top */}
+              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent pointer-events-none lg:hidden" />
+            </div>
           </div>
         </div>
       </section>
