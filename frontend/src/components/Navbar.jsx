@@ -29,6 +29,95 @@ const Navbar = ({ onOpenSearch }) => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-200">
+      {/* Top Running Announcement Ticker Bar (Deep Festive Crimson Gradient) */}
+      <div className="bg-gradient-to-r from-[#65090F] via-[#7F0E16] to-[#65090F] text-white py-1.5 overflow-hidden border-b border-[#4E060B] shadow-xs select-none">
+        <div className="animate-ticker flex items-center whitespace-nowrap text-xs font-bold tracking-wide">
+          {/* Loop Segment 1 */}
+          <div className="flex items-center gap-6 sm:gap-8 shrink-0 pr-6 sm:pr-8">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_#F59E0B] inline-block"></span>
+              <span className="text-base leading-none">🎉</span>
+              <span className="text-white font-extrabold">Diwali Special Offers</span>
+              <span className="text-amber-400">•</span>
+              <span className="text-amber-200">Best Prices</span>
+              <span className="text-amber-400">•</span>
+              <span className="text-white">Premium Crackers</span>
+            </span>
+
+            <span className="flex items-center gap-2">
+              <span className="text-amber-400">•</span>
+              <span className="text-base leading-none">🚚</span>
+              <span className="text-white">Direct Sivakasi Factory Wholesale</span>
+              <span className="text-amber-400">•</span>
+              <span className="text-[#FFE082] font-black uppercase tracking-wider bg-red-950/70 px-2 py-0.5 rounded border border-amber-400/40">
+                Flat 80% Off
+              </span>
+            </span>
+
+            <span className="flex items-center gap-2">
+              <span className="text-amber-400">•</span>
+              <span className="text-base leading-none">💥</span>
+              <span className="text-white">100% Legal PESO Green Crackers & Fresh 2026 Stock</span>
+            </span>
+
+            <span className="flex items-center gap-2">
+              <span className="text-amber-400">•</span>
+              <span className="text-base leading-none">📞</span>
+              <span className="text-white">Helpline & WhatsApp:</span>
+              <span className="text-amber-200 font-extrabold">+91 80984 43633</span>
+            </span>
+
+            <span className="flex items-center gap-2">
+              <span className="text-amber-400">•</span>
+              <span className="text-base leading-none">✨</span>
+              <span className="text-white">Pan-India Fast Transport Delivery</span>
+            </span>
+          </div>
+
+          {/* Loop Segment 2 (Duplicate for continuous loop) */}
+          <div className="flex items-center gap-6 sm:gap-8 shrink-0 pr-6 sm:pr-8" aria-hidden="true">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_#F59E0B] inline-block"></span>
+              <span className="text-base leading-none">🎉</span>
+              <span className="text-white font-extrabold">Diwali Special Offers</span>
+              <span className="text-amber-400">•</span>
+              <span className="text-amber-200">Best Prices</span>
+              <span className="text-amber-400">•</span>
+              <span className="text-white">Premium Crackers</span>
+            </span>
+
+            <span className="flex items-center gap-2">
+              <span className="text-amber-400">•</span>
+              <span className="text-base leading-none">🚚</span>
+              <span className="text-white">Direct Sivakasi Factory Wholesale</span>
+              <span className="text-amber-400">•</span>
+              <span className="text-[#FFE082] font-black uppercase tracking-wider bg-red-950/70 px-2 py-0.5 rounded border border-amber-400/40">
+                Flat 80% Off
+              </span>
+            </span>
+
+            <span className="flex items-center gap-2">
+              <span className="text-amber-400">•</span>
+              <span className="text-base leading-none">💥</span>
+              <span className="text-white">100% Legal PESO Green Crackers & Fresh 2026 Stock</span>
+            </span>
+
+            <span className="flex items-center gap-2">
+              <span className="text-amber-400">•</span>
+              <span className="text-base leading-none">📞</span>
+              <span className="text-white">Helpline & WhatsApp:</span>
+              <span className="text-amber-200 font-extrabold">+91 80984 43633</span>
+            </span>
+
+            <span className="flex items-center gap-2">
+              <span className="text-amber-400">•</span>
+              <span className="text-base leading-none">✨</span>
+              <span className="text-white">Pan-India Fast Transport Delivery</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
       <div
         className={`bg-white transition-all duration-200 ${
           isScrolled
