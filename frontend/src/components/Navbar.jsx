@@ -332,19 +332,19 @@ const Navbar = ({ onOpenSearch }) => {
         </div>
       </div>
 
-      {/* 3. Bottom Category Line-Draw Icons Strip */}
-      <div className="bg-[#FAF8F5] border-b border-[#EBE4D8] shadow-2xs py-2 px-3 sm:px-6 select-none overflow-x-auto no-scrollbar">
-        <div className="w-full max-w-[1760px] mx-auto flex items-center justify-start lg:justify-center gap-6 sm:gap-8 md:gap-10">
+      {/* 3. Bottom Category Line-Draw Icons Strip (Icon on Left, Name on Right) */}
+      <div className="bg-[#FAF8F5] border-b border-[#EBE4D8] shadow-2xs py-1.5 px-3 sm:px-6 select-none overflow-x-auto no-scrollbar">
+        <div className="w-full max-w-[1760px] mx-auto flex items-center justify-start lg:justify-center gap-3 sm:gap-5 md:gap-6">
           {categoryLineItems.map((cat) => (
             <Link
               key={cat.slug}
               to={`/products?category=${cat.slug}`}
-              className="group flex flex-col items-center gap-1 shrink-0 text-gray-600 hover:text-[#7A1518] transition-all"
+              className="group flex items-center gap-2 px-2.5 py-1 rounded-full border border-transparent hover:border-[#E5DAC6] hover:bg-white text-gray-700 hover:text-[#7A1518] transition-all shrink-0"
             >
-              <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-[#E5DAC6] group-hover:border-[#7A1518] group-hover:bg-[#F6EFE5] group-hover:scale-110 text-gray-700 group-hover:text-[#7A1518] transition-all shadow-2xs">
+              <div className="w-7 h-7 rounded-full flex items-center justify-center bg-white border border-[#E5DAC6] group-hover:border-[#7A1518] group-hover:bg-[#F6EFE5] group-hover:scale-105 text-[#7A1518] transition-all shadow-2xs shrink-0">
                 {cat.icon}
               </div>
-              <span className="text-[10px] sm:text-[11px] font-bold tracking-tight whitespace-nowrap group-hover:text-[#7A1518] transition-colors">
+              <span className="text-xs font-bold tracking-tight whitespace-nowrap text-gray-700 group-hover:text-[#7A1518] transition-colors">
                 {cat.name}
               </span>
             </Link>

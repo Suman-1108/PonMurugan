@@ -32,7 +32,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden pt-36 sm:pt-40 bg-[#F8F9FA]">
+    <section className="relative overflow-hidden pt-32 sm:pt-36 bg-[#F8F9FA]">
       {/* Screen Reader SEO Heading */}
       <h1 className="sr-only">
         PON MURUGAN – Celebrate Every Moment With Brilliance. Sivakasi Premium Fireworks & Crackers
