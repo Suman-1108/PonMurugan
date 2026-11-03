@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Heart, Plus, Minus, Check } from 'lucide-react';
+import { ShoppingBag, Heart, Plus, Minus, Check, Eye } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, viewMode = 'card', index = 1 }) => {
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
@@ -33,6 +33,97 @@ const ProductCard = ({ product }) => {
     setTimeout(() => setAddedAnim(false), 1200);
   };
 
+  // If viewMode is 'row', render table-row style without product image
+  if (viewMode === 'row') {
+    return (
+      <tr className="hover:bg-[#FAF8F5] transition-colors group text-xs sm:text-sm">
+        <td className="py-4 px-4 font-bold text-gray-700 font-mono">
+          {product.no || index}
+        </td>
+
+        <td className="py-4 px-5">
+          <Link
+            to={`/products/${product.id}`}
+            className="font-serif font-bold text-gray-900 group-hover:text-[#7A1518] text-sm sm:text-base leading-snug transition-colors block"
+          >
+            {product.name}
+          </Link>
+          <div className="flex items-center gap-2 mt-1.5 flex-wrap">
+            <span className="bg-[#E8F5E9] text-[#2E7D32] border border-[#C8E6C9] text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">
+              IN STOCK
+            </span>
+            <span className="text-[#C29B38] text-[11px] font-semibold flex items-center gap-1">
+              <span>★</span>
+              <span>Festive Choice</span>
+            </span>
+          </div>
+        </td>
+
+        <td className="py-4 px-4 whitespace-nowrap">
+          <span className="text-[#B8860B] font-bold text-xs uppercase tracking-wider">
+            {product.categoryName?.toUpperCase() || 'FIREWORKS'}
+          </span>
+        </td>
+
+        <td className="py-4 px-4 whitespace-nowrap text-gray-600 font-medium font-mono text-xs">
+          {product.packSize || '1 Unit'}
+        </td>
+
+        <td className="py-4 px-4 whitespace-nowrap text-gray-400 line-through font-mono text-xs">
+          ₹{product.mrp}
+        </td>
+
+        <td className="py-4 px-4 whitespace-nowrap">
+          <div className="flex items-baseline gap-1.5">
+            <span className="font-extrabold text-gray-950 font-sans text-sm sm:text-base">
+              ₹{product.price}
+            </span>
+            {discountPercent > 0 && (
+              <span className="text-[11px] font-bold text-[#D81C28]">
+                ({discountPercent}% OFF)
+              </span>
+            )}
+          </div>
+        </td>
+
+        <td className="py-4 px-5 text-right whitespace-nowrap">
+          <div className="inline-flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleAdd}
+              className={`px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-all active:scale-95 shadow-2xs ${
+                addedAnim
+                  ? 'bg-emerald-600 text-white'
+                  : 'bg-[#7A1518] hover:bg-[#8B1E1E] text-white'
+              }`}
+            >
+              {addedAnim ? (
+                <>
+                  <Check className="w-3.5 h-3.5" />
+                  <span>ADDED</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="w-3.5 h-3.5" />
+                  <span>ADD</span>
+                </>
+              )}
+            </button>
+
+            <Link
+              to={`/products/${product.id}`}
+              className="px-2.5 py-1.5 rounded-md border border-[#E5DAC6] hover:border-[#7A1518] text-gray-700 hover:text-[#7A1518] text-xs font-semibold flex items-center gap-1 transition-colors bg-white"
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span>Details</span>
+            </Link>
+          </div>
+        </td>
+      </tr>
+    );
+  }
+
+  // Default: Pristine Light-Theme Card View (Zero Product Images)
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -40,7 +131,7 @@ const ProductCard = ({ product }) => {
       viewport={{ once: true, margin: '-20px' }}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
-      className="group relative flex flex-col justify-between rounded-2xl bg-white text-gray-900 overflow-hidden shadow-md hover:shadow-xl border border-gray-200 hover:border-[#D81C28]/40 transition-all duration-300 p-5 font-sans"
+      className="group relative flex flex-col justify-between rounded-2xl bg-white text-gray-900 overflow-hidden shadow-md hover:shadow-xl border border-gray-200 hover:border-[#7A1518]/40 transition-all duration-300 p-5 font-sans"
     >
       {/* Top Header: Serial No & Category */}
       <div>
@@ -49,7 +140,7 @@ const ProductCard = ({ product }) => {
             <span className="w-8 h-8 rounded-lg bg-gray-900 text-white text-xs font-black flex items-center justify-center font-mono">
               #{product.no || product.id?.slice(0, 3)}
             </span>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#D81C28] bg-red-50 border border-red-100 px-2.5 py-0.5 rounded-full">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#7A1518] bg-red-50 border border-red-100 px-2.5 py-0.5 rounded-full">
               {product.categoryName}
             </span>
           </div>
@@ -57,15 +148,15 @@ const ProductCard = ({ product }) => {
           <button
             onClick={toggleWishlist}
             aria-label="Add to wishlist"
-            className="w-7 h-7 rounded-full bg-gray-50 hover:bg-red-50 flex items-center justify-center text-gray-400 hover:text-[#D81C28] transition-colors"
+            className="w-7 h-7 rounded-full bg-gray-50 hover:bg-red-50 flex items-center justify-center text-gray-400 hover:text-[#7A1518] transition-colors"
           >
-            <Heart className={`w-3.5 h-3.5 ${isWishlisted ? 'fill-[#D81C28] text-[#D81C28]' : ''}`} />
+            <Heart className={`w-3.5 h-3.5 ${isWishlisted ? 'fill-[#7A1518] text-[#7A1518]' : ''}`} />
           </button>
         </div>
 
-        {/* Cracker Name (Prominent, High-Contrast Typography) */}
-        <Link to={`/products/${product.id}`} className="block group-hover:text-[#D81C28] transition-colors">
-          <h3 className="text-base sm:text-lg font-black text-gray-900 leading-snug line-clamp-2 min-h-[2.75rem]">
+        {/* Cracker Name */}
+        <Link to={`/products/${product.id}`} className="block group-hover:text-[#7A1518] transition-colors">
+          <h3 className="text-base sm:text-lg font-serif font-black text-gray-900 leading-snug line-clamp-2 min-h-[2.75rem]">
             {product.name}
           </h3>
         </Link>
@@ -132,7 +223,7 @@ const ProductCard = ({ product }) => {
             className={`flex-1 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all ${
               addedAnim 
                 ? 'bg-emerald-600 text-white' 
-                : 'btn-red text-white'
+                : 'bg-[#7A1518] hover:bg-[#8B1E1E] text-white'
             }`}
           >
             {addedAnim ? (

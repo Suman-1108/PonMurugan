@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Hero from '../components/Hero';
 import ProductCard from '../components/ProductCard';
+import PopularProductsTable from '../components/PopularProductsTable';
 import { getFeaturedProducts } from '../data/products';
 import apiService from '../services/api';
 import toast from 'react-hot-toast';
@@ -229,34 +230,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Top Rated Products Section (Clean White Theme) */}
-      <section className="py-16 w-full max-w-[1760px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-black text-gray-900 font-sans tracking-tight">
-              Top rated products
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-600 mt-1">
-              Customer verified best-sellers and festival favourites direct from Sivakasi.
-            </p>
-          </div>
-
-          <Link
-            to="/products"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#D81C28] hover:text-[#8B1018] transition-colors"
-          >
-            <span>View All Products</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-
-        {/* Clean Light-Themed Product Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {featuredProducts.slice(0, 8).map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
+      {/* Discover Our Popular Products - Table Format (Image-Free List View as requested) */}
+      <PopularProductsTable />
 
       {/* 5-Item Value Proposition Features Bar (Clean White Background) */}
       <section className="py-8 bg-white border-y border-gray-200 shadow-xs">
