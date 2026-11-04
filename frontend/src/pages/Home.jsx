@@ -12,6 +12,8 @@ import {
   ShieldCheck,
   Truck,
   ArrowRight,
+  ArrowUpRight,
+  ChevronDown,
   Send,
   Eye,
   X,
@@ -116,7 +118,9 @@ const Home = () => {
     name: '',
     phone: '',
     email: '',
-    enquiryType: 'Retail Celebration Order',
+    companyCity: '',
+    enquiryType: 'Wholesale & Dealership Enquiry',
+    budget: '₹10K - ₹25K',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -140,14 +144,19 @@ const Home = () => {
 
     setIsSubmitting(true);
     try {
-      const res = await apiService.submitEnquiry(formData);
+      const res = await apiService.submitEnquiry({
+        ...formData,
+        notes: `Budget: ${formData.budget} | City/Company: ${formData.companyCity || 'N/A'}`
+      });
       if (res.success) {
         toast.success(res.message || 'Thank you! Your enquiry has been sent to our Sivakasi office.');
         setFormData({
           name: '',
           phone: '',
           email: '',
-          enquiryType: 'Retail Celebration Order',
+          companyCity: '',
+          enquiryType: 'Wholesale & Dealership Enquiry',
+          budget: '₹10K - ₹25K',
           message: ''
         });
       } else {
@@ -361,124 +370,262 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Customer Fast Enquiry Form (Clean White Theme) */}
-      <section className="py-20 bg-[#F8F9FA] border-t border-gray-200 relative">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#D81C28] px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 inline-block mb-3">
-              Fast Response Desk
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-4 font-sans">
-              Send Us An <span className="text-[#D81C28]">Enquiry</span>
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
-              Looking for special wedding cracker displays, wholesale dealer pricing, or custom family gift boxes? Fill out the details below.
-            </p>
+      {/* Customer Modern Enquiry Section (Inspired by Reference Design) */}
+      <section id="enquiry-section" className="pt-28 sm:pt-32 pb-20 lg:pb-28 bg-white border-t border-gray-100 relative overflow-hidden scroll-mt-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Left Column: Bold Headline, Subtitle, and Line-Art Illustration */}
+            <div className="lg:col-span-5 flex flex-col justify-between h-full pt-2">
+              <div>
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.08] font-sans">
+                  Let’s Make<br />
+                  Moments Celestial.
+                </h2>
+                <p className="text-sm sm:text-base text-gray-600 mt-5 leading-relaxed max-w-md">
+                  Tell us about your celebration date, bulk festival requirements, or wedding cracker displays — we’ll turn your vision into an awe-inspiring pyrotechnic celebration.
+                </p>
+              </div>
+
+              {/* Whimsical Modern Line-Art Illustration */}
+              <div className="mt-10 sm:mt-14 max-w-xs sm:max-w-sm">
+                <svg
+                  viewBox="0 0 340 280"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-full h-auto select-none"
+                  aria-hidden="true"
+                >
+                  {/* Laptop Base and Screen */}
+                  <path d="M75 235 L175 235 L160 165 L90 165 Z" stroke="#18181B" strokeWidth="2" strokeLinejoin="round" fill="#FFFFFF" />
+                  <path d="M55 235 L195 235" stroke="#18181B" strokeWidth="2.5" strokeLinecap="round" />
+
+                  {/* Body & Arms Reaching to Sky */}
+                  <path d="M68 215 C45 195 18 150 25 115 C30 95 48 100 60 120 C75 145 82 190 86 215" stroke="#18181B" strokeWidth="2" fill="#FFFFFF" />
+                  <path d="M60 120 C68 85 98 42 120 28 C134 18 144 35 135 62 C122 102 110 148 102 215" stroke="#18181B" strokeWidth="2" fill="#FFFFFF" strokeLinejoin="round" />
+
+                  {/* Head Profile */}
+                  <circle cx="56" cy="95" r="14" fill="#18181B" />
+                  <path d="M55 89 C51 93 51 101 56 106 C62 106 65 102 64 96 Z" fill="#18181B" />
+                  <path d="M65 98 L72 98" stroke="#18181B" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M50 105 C54 113 63 114 67 109" stroke="#18181B" strokeWidth="2" fill="#18181B" />
+
+                  {/* Soaring Flight / Celebration Rocket Plane */}
+                  <g transform="translate(108, 6) rotate(6)">
+                    <path d="M5 42 L88 14 L32 70 Z" stroke="#18181B" strokeWidth="2" fill="#FFFFFF" strokeLinejoin="round" />
+                    <path d="M32 70 L42 39 L88 14" stroke="#18181B" strokeWidth="2" strokeLinejoin="round" />
+                    <path d="M42 39 L60 54" stroke="#18181B" strokeWidth="1.5" />
+                    {/* Festive Sparkles and Flight Arc */}
+                    <path d="M0 60 C-18 80 -34 102 -50 128" stroke="#A1A1AA" strokeWidth="1.5" strokeDasharray="3 3" />
+                  </g>
+                  {/* Subtle Celebration Sparks */}
+                  <path d="M230 40 L234 40 M232 38 L232 42" stroke="#EAB308" strokeWidth="1.5" strokeLinecap="round" />
+                  <circle cx="260" cy="70" r="1.5" fill="#EAB308" />
+                  <path d="M245 95 L251 95 M248 92 L248 98" stroke="#EAB308" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Right Column: Clean Editorial Enquiry Form Card */}
+            <div className="lg:col-span-7">
+              <div className="p-8 sm:p-10 lg:p-12 rounded-[28px] sm:rounded-[36px] bg-[#F7F7F8] border border-gray-100 shadow-[0_4px_28px_rgba(0,0,0,0.03)] relative">
+                <form onSubmit={handleEnquirySubmit} className="space-y-7">
+                  {/* Full Name */}
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-serif italic text-gray-700 mb-1">
+                      Full name*
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Sumanth Kumar"
+                      className="w-full bg-transparent border-b border-gray-300 focus:border-gray-900 py-2.5 text-gray-900 text-sm outline-none transition-colors placeholder:text-gray-400 placeholder:italic placeholder:font-serif"
+                    />
+                  </div>
+
+                  {/* Email & Phone Number */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-serif italic text-gray-700 mb-1">
+                        Email*
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="your.email@example.com"
+                        className="w-full bg-transparent border-b border-gray-300 focus:border-gray-900 py-2.5 text-gray-900 text-sm outline-none transition-colors placeholder:text-gray-400"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-serif italic text-gray-700 mb-1">
+                        Phone number*
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        required
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="+91 98765 43210"
+                        className="w-full bg-transparent border-b border-gray-300 focus:border-gray-900 py-2.5 text-gray-900 text-sm outline-none transition-colors placeholder:text-gray-400"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Company/City & Inquiry Reason */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                    <div>
+                      <label htmlFor="companyCity" className="block text-sm font-serif italic text-gray-700 mb-1">
+                        Company or City name
+                      </label>
+                      <input
+                        type="text"
+                        id="companyCity"
+                        name="companyCity"
+                        value={formData.companyCity}
+                        onChange={handleInputChange}
+                        placeholder="e.g. Chennai, Bangalore, Madurai"
+                        className="w-full bg-transparent border-b border-gray-300 focus:border-gray-900 py-2.5 text-gray-900 text-sm outline-none transition-colors placeholder:text-gray-400"
+                      />
+                    </div>
+
+                    <div className="relative">
+                      <label htmlFor="enquiryType" className="block text-sm font-serif italic text-gray-700 mb-1 flex items-center justify-between">
+                        <span>Inquiry Reason*</span>
+                        <ChevronDown className="w-4 h-4 text-gray-500 pointer-events-none" />
+                      </label>
+                      <select
+                        id="enquiryType"
+                        name="enquiryType"
+                        value={formData.enquiryType}
+                        onChange={handleInputChange}
+                        className="w-full bg-transparent border-b border-gray-300 focus:border-gray-900 py-2.5 text-gray-900 text-sm outline-none transition-colors cursor-pointer appearance-none pr-6"
+                      >
+                        <option value="Wholesale & Dealership Enquiry">Wholesale &amp; Dealership Enquiry</option>
+                        <option value="Diwali Festival Bulk Order">Diwali Festival Bulk Order</option>
+                        <option value="Wedding / Mega Event Sky Display">Wedding / Mega Event Sky Display</option>
+                        <option value="Custom Family Gift Box Hamper">Custom Family Gift Box Hamper</option>
+                        <option value="Retail Celebration Order">Retail Celebration Order</option>
+                        <option value="Delivery / Transport Status Inquiry">Delivery / Transport Status Inquiry</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Project Budget (Clickable Pill Options) */}
+                  <div>
+                    <label className="block text-sm font-serif italic text-gray-700 mb-3">
+                      Project budget*
+                    </label>
+                    <div className="flex flex-wrap gap-2.5">
+                      {[
+                        'Less than ₹10K',
+                        '₹10K - ₹25K',
+                        '₹25K - ₹50K',
+                        '₹50K - ₹1 Lakh',
+                        'More than ₹1 Lakh'
+                      ].map((budgetOption) => {
+                        const isSelected = formData.budget === budgetOption;
+                        return (
+                          <button
+                            key={budgetOption}
+                            type="button"
+                            onClick={() => setFormData(prev => ({ ...prev, budget: budgetOption }))}
+                            className={`px-3.5 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
+                              isSelected
+                                ? 'bg-gray-900 text-white border-gray-900 shadow-sm'
+                                : 'bg-white text-gray-700 border-gray-300 hover:border-gray-500'
+                            }`}
+                          >
+                            {budgetOption}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Project Details */}
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-serif italic text-gray-700 mb-1">
+                      Project details*
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={2}
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Tell us about your celebration date, desired crackers, or wholesale requirements..."
+                      className="w-full bg-transparent border-b border-gray-300 focus:border-gray-900 py-2.5 text-gray-900 text-sm outline-none transition-colors resize-none placeholder:text-gray-400 placeholder:text-xs"
+                    ></textarea>
+                  </div>
+
+                  {/* Action Button */}
+                  <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="px-7 py-3 rounded-lg bg-[#00D284] hover:bg-[#00B974] text-gray-950 font-bold text-sm tracking-wide inline-flex items-center gap-2 shadow-sm transition-all active:scale-95 disabled:opacity-50 cursor-pointer"
+                    >
+                      <span>{isSubmitting ? 'Connecting...' : 'Lets Connect'}</span>
+                      <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+                    </button>
+
+                    <p className="text-xs text-gray-400 font-serif italic">
+                      * Fast response within 2 hours during season
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
 
-          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-gray-200 shadow-xl relative">
-            <form onSubmit={handleEnquirySubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="Enter your name"
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[#D81C28] focus:ring-1 focus:ring-[#D81C28] text-sm"
-                  />
-                </div>
+          {/* Bottom Contact Reference Links (As in Uploaded Reference) */}
+          <div className="mt-16 sm:mt-20 pt-10 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left">
+            <div>
+              <span className="block text-xs text-gray-400 mb-1.5 font-serif italic">
+                Start a project / Bulk orders
+              </span>
+              <a
+                href="mailto:wholesale@ponmuruganfireworks.com"
+                className="text-sm sm:text-base font-bold text-gray-900 hover:text-[#7A1518] transition-colors"
+              >
+                wholesale@ponmuruganfireworks.com
+              </a>
+            </div>
 
-                <div>
-                  <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                    Mobile Number (WhatsApp Preferred) *
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="e.g. 9876543210"
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[#D81C28] focus:ring-1 focus:ring-[#D81C28] text-sm"
-                  />
-                </div>
-              </div>
+            <div>
+              <span className="block text-xs text-gray-400 mb-1.5 font-serif italic">
+                Direct WhatsApp Desk
+              </span>
+              <a
+                href="https://wa.me/918098443633"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm sm:text-base font-bold text-gray-900 hover:text-emerald-600 transition-colors"
+              >
+                +91 80984 43633
+              </a>
+            </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                    Email Address (Optional)
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="your.email@example.com"
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[#D81C28] focus:ring-1 focus:ring-[#D81C28] text-sm"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="enquiryType" className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                    Enquiry Type
-                  </label>
-                  <select
-                    id="enquiryType"
-                    name="enquiryType"
-                    value={formData.enquiryType}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:bg-white focus:border-[#D81C28] text-sm cursor-pointer"
-                  >
-                    <option value="Retail Celebration Order">Retail Celebration Order</option>
-                    <option value="Wholesale & Dealership Enquiry">Wholesale &amp; Dealership Enquiry</option>
-                    <option value="Wedding / Mega Event Sky Display">Wedding / Mega Event Sky Display</option>
-                    <option value="Custom Family Gift Box Combo">Custom Family Gift Box Combo</option>
-                    <option value="Delivery / Transport Status Inquiry">Delivery / Transport Status Inquiry</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                  Message / Required Varieties
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Tell us about your celebration date, desired products, or wholesale quantity estimates..."
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[#D81C28] focus:ring-1 focus:ring-[#D81C28] text-sm resize-none"
-                ></textarea>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                <p className="text-xs text-gray-500 flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  Your information is kept private &amp; confidential.
-                </p>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full sm:w-auto px-8 py-3.5 rounded-xl btn-red text-sm font-bold flex items-center justify-center gap-2 shadow-xl shadow-[#D81C28]/25 disabled:opacity-50"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>{isSubmitting ? 'Sending Enquiry...' : 'Submit Enquiry'}</span>
-                </button>
-              </div>
-            </form>
+            <div>
+              <span className="block text-xs text-gray-400 mb-1.5 font-serif italic">
+                Factory &amp; Dispatch Sivakasi
+              </span>
+              <a
+                href="mailto:sales@ponmuruganfireworks.com"
+                className="text-sm sm:text-base font-bold text-gray-900 hover:text-[#7A1518] transition-colors"
+              >
+                sales@ponmuruganfireworks.com
+              </a>
+            </div>
           </div>
         </div>
       </section>
