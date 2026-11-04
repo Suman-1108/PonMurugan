@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import FloatingOrderBar from './components/FloatingOrderBar';
 import SearchModal from './components/SearchModal';
+import SplashScreen from './components/SplashScreen';
 
 // Pages
 import Home from './pages/Home';
@@ -32,9 +33,13 @@ const ScrollToTop = () => {
 
 function App() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
 
   return (
     <CartProvider>
+      {/* Branded Splash Screen with Zoom-In Logo Animation */}
+      {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
+
       <div className="flex flex-col min-h-screen bg-[#F8F9FA] text-[#18181B] selection:bg-[#D81C28] selection:text-white">
         <ScrollToTop />
         <Toaster
