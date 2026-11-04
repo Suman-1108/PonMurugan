@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImg from '../assets/logo/pon_murugan_logo.png';
+import splashLogoImg from '../assets/logo/pon_murugan_splash_logo.png';
 
 const SplashScreen = ({ onComplete, duration = 2400 }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -34,18 +34,18 @@ const SplashScreen = ({ onComplete, duration = 2400 }) => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] } }}
           onClick={() => setIsVisible(false)}
-          className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#0A0204] cursor-pointer select-none overflow-hidden"
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#070102] cursor-pointer select-none overflow-hidden"
           title="Click to skip"
         >
           {/* Ambient Radial Golden & Crimson Festive Glow */}
           <motion.div
             initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: [0.6, 1.2, 1] }}
+            animate={{ opacity: 1, scale: [0.6, 1.25, 1] }}
             transition={{ duration: 1.6, ease: 'easeOut' }}
-            className="absolute w-[340px] h-[340px] sm:w-[520px] sm:h-[520px] rounded-full pointer-events-none"
+            className="absolute w-[380px] h-[380px] sm:w-[580px] sm:h-[580px] rounded-full pointer-events-none"
             style={{
-              background: 'radial-gradient(circle, rgba(245, 196, 90, 0.22) 0%, rgba(122, 21, 24, 0.35) 45%, transparent 70%)',
-              filter: 'blur(30px)'
+              background: 'radial-gradient(circle, rgba(245, 196, 90, 0.28) 0%, rgba(122, 21, 24, 0.38) 45%, transparent 70%)',
+              filter: 'blur(35px)'
             }}
           />
 
@@ -53,15 +53,15 @@ const SplashScreen = ({ onComplete, duration = 2400 }) => {
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{
-              scale: [0.7, 1.15, 1.25],
-              opacity: [0, 0.45, 0]
+              scale: [0.7, 1.2, 1.35],
+              opacity: [0, 0.5, 0]
             }}
             transition={{
-              duration: 2,
+              duration: 2.2,
               repeat: Infinity,
               ease: 'easeOut'
             }}
-            className="absolute w-56 h-56 sm:w-80 sm:h-80 rounded-full border border-amber-400/30 pointer-events-none"
+            className="absolute w-64 h-64 sm:w-96 sm:h-96 rounded-full border border-amber-400/30 pointer-events-none"
           />
 
           {/* Centered Logo with Zoom-In In-Animation */}
@@ -76,14 +76,14 @@ const SplashScreen = ({ onComplete, duration = 2400 }) => {
               times: [0, 0.7, 1],
               ease: [0.16, 1, 0.3, 1]
             }}
-            className="relative z-10 flex items-center justify-center p-4"
+            className="relative z-10 flex items-center justify-center p-4 max-w-[90vw] max-h-[90vh]"
           >
             <img
-              src={logoImg}
+              src={splashLogoImg}
               alt="PON MURUGAN Fireworks"
-              className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain drop-shadow-[0_0_40px_rgba(245,196,90,0.4)]"
+              className="w-64 h-64 sm:w-84 sm:h-84 md:w-96 md:h-96 lg:w-[440px] lg:h-[440px] object-contain drop-shadow-[0_0_55px_rgba(245,196,90,0.5)]"
               onError={(e) => {
-                e.target.src = '/assets/pon_murugan_logo.png';
+                e.target.src = '/assets/pon_murugan_splash_logo.png';
               }}
             />
           </motion.div>
@@ -94,3 +94,4 @@ const SplashScreen = ({ onComplete, duration = 2400 }) => {
 };
 
 export default SplashScreen;
+
