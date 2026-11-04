@@ -30,11 +30,7 @@ import {
   Smile,
   Store,
   Headphones,
-  Download,
-  Facebook,
-  Linkedin,
-  Twitter,
-  Instagram
+  Download
 } from 'lucide-react';
 
 import sparklersImg from '../assets/categories/sparkelers.png';
@@ -437,46 +433,6 @@ const Home = () => {
                       India
                     </p>
                   </div>
-                </div>
-
-                {/* Royal Crimson & Gold Circular Social Icons */}
-                <div className="flex items-center gap-3 pt-2">
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-[#7A1518] hover:bg-[#8F1A1E] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm border border-amber-300/30"
-                    aria-label="Facebook"
-                  >
-                    <Facebook className="w-4 h-4 fill-current stroke-none" />
-                  </a>
-                  <a
-                    href="https://wa.me/918098443633"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-[#7A1518] hover:bg-[#8F1A1E] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm border border-amber-300/30"
-                    aria-label="LinkedIn / WhatsApp"
-                  >
-                    <Linkedin className="w-4 h-4 fill-current stroke-none" />
-                  </a>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-[#7A1518] hover:bg-[#8F1A1E] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm border border-amber-300/30"
-                    aria-label="Twitter"
-                  >
-                    <Twitter className="w-4 h-4 fill-current stroke-none" />
-                  </a>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-[#7A1518] hover:bg-[#8F1A1E] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm border border-amber-300/30"
-                    aria-label="Instagram"
-                  >
-                    <Instagram className="w-4 h-4" />
-                  </a>
                 </div>
               </div>
 
