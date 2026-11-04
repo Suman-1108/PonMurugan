@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import splashLogoImg from '../assets/logo/pon_murugan_splash_logo.jpg';
+import logoImg from '../assets/logo/pon_murugan_logo.png';
 
-const SplashScreen = ({ onComplete, duration = 2400 }) => {
+const SplashScreen = ({ onComplete, duration = 2500 }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -32,63 +32,54 @@ const SplashScreen = ({ onComplete, duration = 2400 }) => {
         <motion.div
           key="splash-screen"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] } }}
+          exit={{ opacity: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } }}
           onClick={() => setIsVisible(false)}
-          className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#FAF6ED] cursor-pointer select-none overflow-hidden"
-          title="Click to skip"
+          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#FAF7F2] cursor-pointer select-none overflow-hidden"
+          title="Click anywhere to skip"
         >
-          {/* Ambient Warm Golden & Festive Cream Aura */}
+          {/* Subtle Warm Amber Ambient Glow Behind the App Icon */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: [0.6, 1.25, 1] }}
-            transition={{ duration: 1.6, ease: 'easeOut' }}
-            className="absolute w-[420px] h-[420px] sm:w-[620px] sm:h-[620px] rounded-full pointer-events-none"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="absolute w-80 h-80 sm:w-[420px] sm:h-[420px] rounded-full pointer-events-none"
             style={{
-              background: 'radial-gradient(circle, rgba(212, 175, 55, 0.32) 0%, rgba(122, 21, 24, 0.12) 40%, rgba(250, 246, 237, 0) 70%)',
+              background: 'radial-gradient(circle, rgba(245, 158, 11, 0.20) 0%, rgba(122, 21, 24, 0.08) 45%, rgba(250, 247, 242, 0) 72%)',
               filter: 'blur(35px)'
             }}
           />
 
-          {/* Golden Pulse Ring */}
+          {/* Centered App Icon + Typography with Zoom-In Entrance Animation */}
           <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
+            initial={{ scale: 0.65, opacity: 0 }}
             animate={{
-              scale: [0.75, 1.2, 1.35],
-              opacity: [0, 0.45, 0]
-            }}
-            transition={{
-              duration: 2.2,
-              repeat: Infinity,
-              ease: 'easeOut'
-            }}
-            className="absolute w-72 h-72 sm:w-[420px] sm:h-[420px] rounded-full border border-amber-400/50 pointer-events-none"
-          />
-
-          {/* Centered Royal Medallion with Zoom-In In-Animation */}
-          <motion.div
-            initial={{ scale: 0.3, opacity: 0 }}
-            animate={{
-              scale: [0.3, 1.08, 1],
+              scale: [0.65, 1.04, 1],
               opacity: [0, 1, 1]
             }}
             transition={{
-              duration: 1.3,
+              duration: 1.0,
               times: [0, 0.7, 1],
-              ease: [0.16, 1, 0.3, 1]
+              ease: [0.16, 1, 0.3, 1],
+              opacity: { duration: 0.3, ease: 'easeOut' }
             }}
-            className="relative z-10 flex items-center justify-center p-3"
+            className="relative z-10 flex flex-col items-center"
           >
-            {/* Elegant Circular Medallion with Royal Gold Borders */}
-            <div className="relative w-64 h-64 sm:w-84 sm:h-84 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px] rounded-full bg-[#080203] overflow-hidden flex items-center justify-center shadow-[0_25px_60px_rgba(122,21,24,0.25),0_0_0_3px_#D4AF37,0_0_0_7px_#FAF6ED,0_0_0_9px_rgba(212,175,55,0.45)]">
+            {/* Modern Rounded-Square App Icon Card */}
+            <div className="w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-[28px] sm:rounded-[36px] bg-black flex items-center justify-center p-2.5 sm:p-3 shadow-[0_20px_45px_rgba(0,0,0,0.18),0_10px_25px_rgba(122,21,24,0.14)] border border-amber-300/40 overflow-hidden">
               <img
-                src={splashLogoImg}
-                alt="PON MURUGAN Fireworks"
-                className="w-[96%] h-[96%] object-contain"
-                onError={(e) => {
-                  e.target.src = '/assets/pon_murugan_splash_logo.jpg';
-                }}
+                src={logoImg}
+                alt="PON MURUGAN"
+                className="w-full h-full object-contain select-none pointer-events-none"
               />
             </div>
+
+            {/* Typography Below Card Matching Sowmiya Foods Reference */}
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-black tracking-[0.24em] uppercase text-[#7A1518] mt-6 sm:mt-7 font-sans drop-shadow-sm text-center">
+              PON MURUGAN
+            </h1>
+            <p className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.34em] uppercase text-[#C29B38] mt-1.5 sm:mt-2 text-center">
+              PREMIUM • SIVAKASI • FIREWORKS
+            </p>
           </motion.div>
         </motion.div>
       )}
@@ -97,4 +88,3 @@ const SplashScreen = ({ onComplete, duration = 2400 }) => {
 };
 
 export default SplashScreen;
-
