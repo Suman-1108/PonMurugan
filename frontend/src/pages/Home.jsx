@@ -172,7 +172,7 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-[#F8F9FA] min-h-screen text-gray-900">
+    <div className="bg-[#FAF8F5] min-h-screen text-gray-900">
       {/* Hero Section (Full-Width Cinematic Banner) */}
       <Hero />
 
@@ -372,16 +372,31 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Customer Modern Enquiry Section (Exact Match to Reference Design) */}
-      <section id="enquiry-section" className="py-16 sm:py-24 bg-[#8796A4] relative overflow-hidden scroll-mt-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Floating White Card */}
-          <div className="bg-white rounded-2xl sm:rounded-[28px] p-8 sm:p-12 lg:p-14 shadow-[0_20px_60px_rgba(0,0,0,0.14)] relative">
+      {/* Customer Modern Enquiry Section (Royal Crimson & Warm Gold Brand Palette) */}
+      <section id="enquiry-section" className="py-16 sm:py-24 bg-gradient-to-b from-[#FAF8F5] via-[#F4ECE0] to-[#FAF6ED] border-t border-[#EAE3D6] relative overflow-hidden scroll-mt-24">
+        {/* Subtle Ambient Golden Radial Glow */}
+        <div
+          className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(212, 175, 55, 0.16) 0%, rgba(122, 21, 24, 0.06) 45%, transparent 70%)',
+            filter: 'blur(50px)'
+          }}
+        />
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Floating White Card with Royal Gold Accents */}
+          <div className="bg-white rounded-2xl sm:rounded-[28px] p-8 sm:p-12 lg:p-14 shadow-[0_20px_55px_rgba(122,21,24,0.07)] border border-[#EAE3D6] relative">
             {/* Centered Serif Headline */}
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-normal text-gray-900 tracking-tight leading-tight text-center mb-10 sm:mb-14">
-              Get in touch, let us know<br className="hidden sm:inline" />
-              {' '}how we can help
-            </h2>
+            <div className="text-center mb-10 sm:mb-14">
+              <span className="text-[11px] sm:text-xs font-bold tracking-[0.28em] text-[#C29B38] uppercase block mb-1.5">
+                FAST FACTORY RESPONSE
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-black text-[#7A1518] tracking-tight leading-tight">
+                Get in touch, let us know<br className="hidden sm:inline" />
+                {' '}how we can help
+              </h2>
+              <div className="w-12 h-0.5 bg-[#C29B38] mx-auto mt-3.5"></div>
+            </div>
 
             {/* 2-Column Content Layout */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-start">
@@ -389,28 +404,34 @@ const Home = () => {
               <div className="md:col-span-5 flex flex-col justify-between h-full space-y-8">
                 <div className="space-y-6">
                   <div>
-                    <p className="text-xs sm:text-sm text-gray-400 font-medium mb-1">Email:</p>
+                    <p className="text-xs sm:text-[13px] text-[#C29B38] font-bold tracking-wider uppercase mb-1">
+                      Email:
+                    </p>
                     <a
                       href="mailto:ponmuruganfireworks@gmail.com"
-                      className="text-base sm:text-lg font-bold text-gray-900 hover:text-[#1855F4] transition-colors"
+                      className="text-base sm:text-lg font-bold text-[#7A1518] hover:text-[#9B1B1F] transition-colors"
                     >
                       ponmuruganfireworks@gmail.com
                     </a>
                   </div>
 
                   <div>
-                    <p className="text-xs sm:text-sm text-gray-400 font-medium mb-1">Phone:</p>
+                    <p className="text-xs sm:text-[13px] text-[#C29B38] font-bold tracking-wider uppercase mb-1">
+                      Phone / WhatsApp:
+                    </p>
                     <a
                       href="tel:+918098443633"
-                      className="text-base sm:text-lg font-bold text-gray-900 hover:text-[#1855F4] transition-colors"
+                      className="text-base sm:text-lg font-bold text-[#7A1518] hover:text-[#9B1B1F] transition-colors"
                     >
-                      (123) 1221 2323 / +91 80984 43633
+                      +91 80984 43633
                     </a>
                   </div>
 
                   <div>
-                    <p className="text-xs sm:text-sm text-gray-400 font-medium mb-1">Address:</p>
-                    <p className="text-sm sm:text-base font-bold text-gray-900 leading-snug">
+                    <p className="text-xs sm:text-[13px] text-[#C29B38] font-bold tracking-wider uppercase mb-1">
+                      Factory Address:
+                    </p>
+                    <p className="text-sm sm:text-base font-bold text-gray-800 leading-snug">
                       Pon Murugan Fireworks, Factory Road,<br />
                       Sivakasi, Tamil Nadu 626123,<br />
                       India
@@ -418,13 +439,13 @@ const Home = () => {
                   </div>
                 </div>
 
-                {/* Blue Circular Social Icons */}
+                {/* Royal Crimson & Gold Circular Social Icons */}
                 <div className="flex items-center gap-3 pt-2">
                   <a
                     href="https://facebook.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full bg-[#1855F4] hover:bg-[#1242C5] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm"
+                    className="w-10 h-10 rounded-full bg-[#7A1518] hover:bg-[#8F1A1E] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm border border-amber-300/30"
                     aria-label="Facebook"
                   >
                     <Facebook className="w-4 h-4 fill-current stroke-none" />
@@ -433,7 +454,7 @@ const Home = () => {
                     href="https://wa.me/918098443633"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full bg-[#1855F4] hover:bg-[#1242C5] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm"
+                    className="w-10 h-10 rounded-full bg-[#7A1518] hover:bg-[#8F1A1E] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm border border-amber-300/30"
                     aria-label="LinkedIn / WhatsApp"
                   >
                     <Linkedin className="w-4 h-4 fill-current stroke-none" />
@@ -442,7 +463,7 @@ const Home = () => {
                     href="https://twitter.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full bg-[#1855F4] hover:bg-[#1242C5] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm"
+                    className="w-10 h-10 rounded-full bg-[#7A1518] hover:bg-[#8F1A1E] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm border border-amber-300/30"
                     aria-label="Twitter"
                   >
                     <Twitter className="w-4 h-4 fill-current stroke-none" />
@@ -451,7 +472,7 @@ const Home = () => {
                     href="https://instagram.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full bg-[#1855F4] hover:bg-[#1242C5] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm"
+                    className="w-10 h-10 rounded-full bg-[#7A1518] hover:bg-[#8F1A1E] text-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm border border-amber-300/30"
                     aria-label="Instagram"
                   >
                     <Instagram className="w-4 h-4" />
@@ -465,8 +486,8 @@ const Home = () => {
                   {/* Two Column Name & Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-gray-800 mb-2">
-                        Your Name
+                      <label htmlFor="name" className="block text-xs sm:text-sm font-bold text-[#7A1518] mb-2">
+                        Your Name *
                       </label>
                       <input
                         type="text"
@@ -476,13 +497,13 @@ const Home = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Your full name"
-                        className="w-full bg-[#EEF2F6] hover:bg-[#E5EBF2] focus:bg-white focus:ring-2 focus:ring-[#1855F4] rounded-xl px-4 py-3.5 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-all border border-transparent"
+                        className="w-full bg-[#FAF7F2] hover:bg-[#F5EFE4] focus:bg-white focus:ring-2 focus:ring-[#7A1518] rounded-xl px-4 py-3.5 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-all border border-[#EAE3D6]"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="emailOrPhone" className="block text-xs sm:text-sm font-semibold text-gray-800 mb-2">
-                        Email address
+                      <label htmlFor="emailOrPhone" className="block text-xs sm:text-sm font-bold text-[#7A1518] mb-2">
+                        Email address / Mobile *
                       </label>
                       <input
                         type="text"
@@ -491,16 +512,16 @@ const Home = () => {
                         required
                         value={formData.emailOrPhone}
                         onChange={handleInputChange}
-                        placeholder="Your email or phone"
-                        className="w-full bg-[#EEF2F6] hover:bg-[#E5EBF2] focus:bg-white focus:ring-2 focus:ring-[#1855F4] rounded-xl px-4 py-3.5 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-all border border-transparent"
+                        placeholder="Your email or mobile"
+                        className="w-full bg-[#FAF7F2] hover:bg-[#F5EFE4] focus:bg-white focus:ring-2 focus:ring-[#7A1518] rounded-xl px-4 py-3.5 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-all border border-[#EAE3D6]"
                       />
                     </div>
                   </div>
 
                   {/* Message Field */}
                   <div>
-                    <label htmlFor="message" className="block text-xs sm:text-sm font-semibold text-gray-800 mb-2">
-                      Message
+                    <label htmlFor="message" className="block text-xs sm:text-sm font-bold text-[#7A1518] mb-2">
+                      Message / Celebration Requirements
                     </label>
                     <textarea
                       id="message"
@@ -508,16 +529,16 @@ const Home = () => {
                       rows={5}
                       value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="Write something...."
-                      className="w-full bg-[#EEF2F6] hover:bg-[#E5EBF2] focus:bg-white focus:ring-2 focus:ring-[#1855F4] rounded-xl p-4 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-all resize-none min-h-[140px] border border-transparent"
+                      placeholder="Write your celebration date, bulk enquiry, or cracker varieties..."
+                      className="w-full bg-[#FAF7F2] hover:bg-[#F5EFE4] focus:bg-white focus:ring-2 focus:ring-[#7A1518] rounded-xl p-4 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-all resize-none min-h-[140px] border border-[#EAE3D6]"
                     />
                   </div>
 
-                  {/* Full-Width Send Message Button */}
+                  {/* Full-Width Send Message Button (Royal Crimson & Gold) */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 sm:py-4 rounded-xl bg-[#1855F4] hover:bg-[#1242C5] text-white font-semibold text-sm tracking-wide shadow-sm hover:shadow-md transition-all active:scale-[0.99] disabled:opacity-50 cursor-pointer"
+                    className="w-full py-4 rounded-xl bg-gradient-to-r from-[#7A1518] via-[#8F1A1E] to-[#7A1518] hover:from-[#8F1A1E] hover:to-[#A81D24] text-white font-bold text-sm tracking-widest uppercase shadow-md shadow-[#7A1518]/25 border border-amber-400/35 transition-all active:scale-[0.99] disabled:opacity-50 cursor-pointer"
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
