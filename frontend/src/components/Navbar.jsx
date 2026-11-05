@@ -58,8 +58,8 @@ const Navbar = ({ onOpenSearch }) => {
     },
 
     {
-      name: 'Chakkars',
-      slug: 'ground-chakkars',
+      name: 'Chakkars & Kurvi',
+      slug: 'chorsa-kurvi',
       icon: (
         <svg className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="9" />
@@ -74,7 +74,7 @@ const Navbar = ({ onOpenSearch }) => {
 
     {
       name: 'Sky Rockets',
-      slug: 'rockets',
+      slug: 'bombs-rockets',
       icon: (
         <svg className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
@@ -86,7 +86,7 @@ const Navbar = ({ onOpenSearch }) => {
     
     {
       name: 'Aerial Shots',
-      slug: 'aerial-shots',
+      slug: 'shots-set-outs',
       icon: (
         <svg className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <rect x="5" y="14" width="14" height="7" rx="1.5" />
@@ -100,7 +100,7 @@ const Navbar = ({ onOpenSearch }) => {
     },
     {
       name: 'Sound Crackers',
-      slug: 'sound-crackers',
+      slug: 'bijli-sound',
       icon: (
         <svg className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 2v3" />
@@ -128,7 +128,7 @@ const Navbar = ({ onOpenSearch }) => {
     },
     {
       name: 'Kids & Fancy',
-      slug: 'fancy-novelty',
+      slug: 'fancy-kids',
       icon: (
         <svg className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 2v4" />

@@ -28,19 +28,22 @@ const PopularProductsTable = () => {
   const [sortField, setSortField] = useState('no'); // 'no', 'name', 'price', 'mrp'
   const [sortOrder, setSortOrder] = useState('asc'); // 'asc', 'desc'
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 12;
 
-  // Category filter tabs matching exact reference image
+  // Category filter tabs matching exact price list 2026
   const categoryTabs = [
-    { name: 'All Categories', slug: 'all' },
-    { name: 'Sparklers', slug: 'sparklers' },
-    { name: 'Flower Pots', slug: 'flower-pots' },
-    { name: 'Ground Chakkars', slug: 'ground-chakkars' },
-    { name: 'Rockets', slug: 'rockets' },
-    { name: 'Fancy Fireworks', slug: 'aerial-shots' },
-    { name: 'Bijili Crackers', slug: 'sound-crackers' },
-    { name: 'Gift Boxes', slug: 'gift-boxes' },
-    { name: 'Celebration Combos', slug: 'fancy-novelty' },
+    { name: 'All Categories (99)', slug: 'all' },
+    { name: 'Sparklers (19)', slug: 'sparklers' },
+    { name: 'Chorsa & Kurvi (6)', slug: 'chorsa-kurvi' },
+    { name: 'Twinkling & Pencils (4)', slug: 'twinkling-pencils' },
+    { name: 'Bijli & Sound (8)', slug: 'bijli-sound' },
+    { name: 'Bombs & Rockets (7)', slug: 'bombs-rockets' },
+    { name: 'Flower Pots & Tins (4)', slug: 'flower-pots' },
+    { name: 'Single Sound & Walas (11)', slug: 'single-sound' },
+    { name: 'Shots & Set Outs (13)', slug: 'shots-set-outs' },
+    { name: 'Fancy & Kids (14)', slug: 'fancy-kids' },
+    { name: 'Bank & New Items (8)', slug: 'bank-new-items' },
+    { name: 'Gift Boxes (5)', slug: 'gift-boxes' },
   ];
 
   // Filtering and sorting logic

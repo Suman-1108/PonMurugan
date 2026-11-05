@@ -50,66 +50,66 @@ const Home = () => {
     {
       title: 'Sparklers',
       slug: 'sparklers',
-      variety: '14 Varieties',
+      variety: '19 Varieties',
       badge: 'TRADITIONAL LIGHTS',
-      description: 'Handheld shimmering gold, silver, and multicolor sparklers for peaceful family celebrations.',
+      description: 'Handheld shimmering gold, silver, and multicolor sparklers from 7 CM to 55 CM (S.No 1-19).',
       image: sparklersImg
     },
     {
-      title: 'Flower Pots',
+      title: 'Flower Pots & Tins',
       slug: 'flower-pots',
-      variety: '18 Varieties',
+      variety: '4 Varieties',
       badge: 'FOUNTAIN OF SPARKS',
-      description: 'Majestic fountain showers rising up to 25 feet with sparkling golden and emerald stars.',
+      description: 'Majestic fountain showers rising with sparkling golden stars including Ashok pots (S.No 45-48).',
       image: flowerPotImg
     },
     {
-      title: 'Ground Chakkars',
-      slug: 'ground-chakkars',
-      variety: '10 Varieties',
-      badge: 'SPINNING WHEELS',
-      description: 'Mesmerizing swirling discs emitting vivid circular rings of golden and multi-colored fire.',
-      image: chakkarsImg
-    },
-    {
-      title: 'Rockets',
-      slug: 'rockets',
-      variety: '12 Varieties',
+      title: 'Bombs & Rockets',
+      slug: 'bombs-rockets',
+      variety: '7 Varieties',
       badge: 'CELESTIAL ASCENTS',
-      description: 'High-altitude whistling rockets bursting into expansive starry weeping willow and brocade crowns.',
+      description: 'Whistling 2-sound, 3-sound, Navarang, and Unic rockets with thunder bursts (S.No 38-44).',
       image: rocketsImg
     },
     {
-      title: 'Fancy Fireworks',
-      slug: 'aerial-shots',
-      variety: '24 Varieties',
-      badge: 'AERIAL MULTI-SHOTS',
-      description: 'Multi-stage choreographed repeaters delivering synchronized sky bursts of royal purple, gold, and red.',
+      title: 'Shots & Set Outs',
+      slug: 'shots-set-outs',
+      variety: '13 Varieties',
+      badge: 'AERIAL SKY CAKES',
+      description: 'From 12 Shot to 240 Shot mega celestial displays and grand 2 inch set outs (S.No 73-85).',
       image: fancyImg
     },
     {
-      title: 'Bijili Crackers',
-      slug: 'sound-crackers',
+      title: 'Bijli & Sound',
+      slug: 'bijli-sound',
       variety: '8 Varieties',
       badge: 'FESTIVE SOUNDS',
-      description: 'Crisp rhythmic sound crackers crafted to awaken festive cheer and auspicious celebration spirits.',
+      description: 'Crisp rhythmic sound crackers, Bijli 100P/50P, King Bullet, Titanic, and Jurassic (S.No 30-37).',
       image: bijiliImg
+    },
+    {
+      title: 'Single Sound & Walas',
+      slug: 'single-sound',
+      variety: '11 Varieties',
+      badge: 'ROYAL GARLAND LADIS',
+      description: '1000 to 10000 Wala festive celebration garlands and thunder single sound shots (S.No 62-72).',
+      image: chakkarsImg
+    },
+    {
+      title: 'Fancy & Kids',
+      slug: 'fancy-kids',
+      variety: '14 Varieties',
+      badge: 'KIDS NOVELTIES',
+      description: 'Peacock, drones, helicopters, sirens, photo flash, and fun whimsical crackers (S.No 91-104).',
+      image: comboPackImg
     },
     {
       title: 'Gift Boxes',
       slug: 'gift-boxes',
-      variety: '8 Curations',
+      variety: '5 Curations',
       badge: 'HERITAGE ASSORTMENTS',
-      description: 'Handcrafted luxury hamper assortments packaged in regal gold-embossed celebration boxes.',
+      description: '20 to 65 item luxury Diwali celebration hampers packaged in regal gift boxes (S.No 113-117).',
       image: giftBoxImg
-    },
-    {
-      title: 'Celebration Combos',
-      slug: 'all',
-      variety: '5 Combos',
-      badge: 'COMPLETE FAMILY PACKS',
-      description: 'Curated all-in-one celebration bundles with sparklers, pots, chakkars, and fancy sky shots.',
-      image: comboPackImg
     }
   ];
 
